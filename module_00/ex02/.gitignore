@@ -1,0 +1,6 @@
+.cache/
+out/
+debug/
+compile_commands.json
+tests
+*.o

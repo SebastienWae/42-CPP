@@ -2,24 +2,23 @@
 #define PHONEBOOK_H
 
 #include <cstddef>
+#include <ostream>
 #include <string>
 
 #include "Contact.h"
 
 class PhoneBook {
-    Contact contacts[8];
-    std::size_t n_contacts;
-
   public:
     void addContact(void);
     void searchContact(void) const;
-
     PhoneBook(void);
     ~PhoneBook(void);
 
   private:
-    const Contact *_getContactById(std::size_t id) const;
-    void _print(void) const;
+    Contact *contacts[8];
+    std::size_t c_index;
+    const Contact *getContactById(std::size_t id) const;
+    void print(void) const;
 };
 
 #endif

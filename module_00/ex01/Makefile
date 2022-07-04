@@ -8,10 +8,10 @@ OUT_DIR = out
 DEBUG_DIR = debug
 
 CC = c++
-CFLAGS = -std=c++98
-WARNINGS = -Wall -Wextra -Werror
+CFLAGS = -std=c++98 -Isrc
+WARNING = -Wall -Wextra -Werror
 
-SRCS = phonebook.cpp
+SRCS = main.cpp PhoneBook.cpp Contact.cpp
 SRCS_PATH = $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS = $(addprefix $(OUT_DIR)/,$(SRCS_PATH:%.cpp=%.o))
 OBJS_DEBUG = $(addprefix $(DEBUG_DIR)/,$(SRCS_PATH:%.cpp=%.o))

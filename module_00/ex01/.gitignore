@@ -2,3 +2,5 @@
 out/
 debug/
 compile_commands.json
+phonebook
+phonebook_debug

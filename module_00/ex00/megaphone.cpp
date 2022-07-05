@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 int main(int argc, char *argv[]) {
     if (argc > 0) {
@@ -6,8 +7,10 @@ int main(int argc, char *argv[]) {
             std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
         } else {
             for (int i = 1; i < argc; ++i) {
-                for (int j = 0; argv[i][j]; ++j) {
-                    std::cout << (char)(std::toupper(argv[i][j]));
+                std::string str(argv[i]);
+                for (std::string::iterator t = str.begin(); t != str.end();
+                     ++t) {
+                    std::cout << static_cast<char>(std::toupper(*t));
                 }
             }
             std::cout << std::endl;

@@ -3,7 +3,7 @@ NAME = tests
 RM = rm -rf
 
 CC = c++
-CFLAGS = -std=c++98
+CFLAGS = -std=c++98 -g
 WARNING = -Wall -Wextra -Werror
 
 SRCS = tests.cpp Account.cpp

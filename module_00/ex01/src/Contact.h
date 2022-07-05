@@ -1,19 +1,24 @@
 #ifndef CONTACT_H
 #define CONTACT_H
 
+#include <iostream>
 #include <string>
 
 class Contact {
+    std::string first_name, last_name, nickname, phone, secret;
+
   public:
-    void print(void) const;
     std::string getFirstName(void) const;
     std::string getLastName(void) const;
     std::string getNickName(void) const;
-    Contact(std::string first_name, std::string last_name, std::string nickname,
-            std::string phone_number, std::string darkest_secret);
 
-  private:
-    std::string first_name, last_name, nickname, phone_number, darkest_secret;
+    std::ostream &print(std::ostream &os) const;
+    std::istream &parse(std::istream &is);
+
+    Contact(void);
 };
+
+std::ostream &operator<<(std::ostream &os, const Contact &contact);
+std::istream &operator>>(std::istream &is, Contact &contact);
 
 #endif

@@ -7,18 +7,24 @@
 
 #include "Contact.h"
 
-class PhoneBook {
-  public:
-    void addContact(void);
-    void searchContact(void) const;
-    PhoneBook(void);
-    ~PhoneBook(void);
+#define MAX_CONTACTS 8
 
-  private:
-    Contact *contacts[8];
+class PhoneBook {
+    Contact contacts[MAX_CONTACTS];
     std::size_t c_index;
-    const Contact *getContactById(std::size_t id) const;
-    void print(void) const;
+    std::size_t c_total;
+
+  public:
+    std::size_t getSize(void);
+
+    void addContact(Contact &contact);
+    const Contact &getContactById(std::size_t id) const;
+
+    std::ostream &print(std::ostream &os) const;
+
+    PhoneBook(void);
 };
+
+std::ostream &operator<<(std::ostream &os, const PhoneBook &phonebook);
 
 #endif

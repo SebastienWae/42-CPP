@@ -11,7 +11,7 @@ CC = c++
 CFLAGS = -std=c++98 -Isrc
 WARNING = -Wall -Wextra -Werror
 
-SRCS = main.cpp PhoneBook.cpp Contact.cpp
+SRCS = main.cpp utils.cpp PhoneBook.cpp Contact.cpp
 SRCS_PATH = $(addprefix $(SRC_DIR)/,$(SRCS))
 OBJS = $(addprefix $(OUT_DIR)/,$(SRCS_PATH:%.cpp=%.o))
 OBJS_DEBUG = $(addprefix $(DEBUG_DIR)/,$(SRCS_PATH:%.cpp=%.o))

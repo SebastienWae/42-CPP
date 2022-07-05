@@ -4,6 +4,6 @@
 #include <cstddef>
 #include <string>
 
-std::string truncate(std::string str, size_t width);
+std::string Truncate(const std::string& str, size_t width);
 
 #endif

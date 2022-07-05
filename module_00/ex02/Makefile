@@ -15,9 +15,10 @@ all: $(NAME)
 %.o: %.cpp
 	$(COMPILE.c) $< $(WARNING) -o $@
 
-.PHONY: clean fclean re
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+
+.PHONY: clean fclean re
 clean: 
 	$(RM) $(OBJS)
 fclean: clean

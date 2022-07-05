@@ -1,6 +1,2 @@
-.cache/
-out/
-debug/
+*.o
 megaphone
-megaphone_debug
-compile_commands.json

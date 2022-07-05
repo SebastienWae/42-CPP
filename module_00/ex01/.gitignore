@@ -1,6 +1,2 @@
-.cache/
-out/
-debug/
-compile_commands.json
+*.o
 phonebook
-phonebook_debug

@@ -8,4 +8,6 @@ void Zombie::announce() {
 
 Zombie::Zombie(std::string name) : name(name) {}
 
-Zombie::~Zombie() { std::cout << name << ": dead..." << std::endl; }
+Zombie::~Zombie() {
+  std::cout << name << ": dead..." << std::endl;
+}

@@ -3,18 +3,22 @@
 
 #include <string>
 
+#define FUNC_N 4
 class Harl {
   void debug(void);
   void info(void);
   void warning(void);
   void error(void);
 
+  typedef void (Harl::*logFns)(void);
+  logFns fns[FUNC_N];
+
  public:
-  typedef void (Harl::*HarlFn)(void);
-  HarlFn fns[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-  static std::string name_arr[4];
+  static std::string name_arr[FUNC_N];
 
   void complain(std::string level);
+
+  Harl(void);
 };
 
 #endif

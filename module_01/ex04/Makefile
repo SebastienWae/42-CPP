@@ -1,4 +1,4 @@
-NAME = sed
+NAME = notsed
 
 RM = rm -rf
 

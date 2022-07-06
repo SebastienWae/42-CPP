@@ -7,48 +7,54 @@
 
 #define PRINT_LEFT_PAD 16
 
-std::string Contact::GetFirstName(void) const { return first_name_; }
-std::string Contact::GetLastName(void) const { return last_name_; }
-std::string Contact::GetNickName(void) const { return nickname_; }
+std::string Contact::GetFirstName(void) const {
+  return first_name;
+}
+std::string Contact::GetLastName(void) const {
+  return last_name;
+}
+std::string Contact::GetNickName(void) const {
+  return nickname;
+}
 
 std::ostream& Contact::Print(std::ostream& ostream) const {
   ostream << std::left << std::setw(PRINT_LEFT_PAD)
-          << "First name: " << first_name_ << std::endl;
+          << "First name: " << first_name << std::endl;
   ostream << std::left << std::setw(PRINT_LEFT_PAD)
-          << "Last name: " << last_name_ << std::endl;
-  ostream << std::left << std::setw(PRINT_LEFT_PAD) << "Nickname: " << nickname_
+          << "Last name: " << last_name << std::endl;
+  ostream << std::left << std::setw(PRINT_LEFT_PAD) << "Nickname: " << nickname
+          << std::endl;
+  ostream << std::left << std::setw(PRINT_LEFT_PAD) << "Phone number: " << phone
           << std::endl;
   ostream << std::left << std::setw(PRINT_LEFT_PAD)
-          << "Phone number: " << phone_ << std::endl;
-  ostream << std::left << std::setw(PRINT_LEFT_PAD)
-          << "Darkest secret:" << secret_ << std::endl;
+          << "Darkest secret:" << secret << std::endl;
   return ostream;
 }
 
 std::istream& Contact::Parse(std::istream& istream) {
-  while (first_name_.empty()) {
+  while (first_name.empty()) {
     std::cout << "> first name: ";
-    std::getline(istream, first_name_);
+    std::getline(istream, first_name);
   }
 
-  while (last_name_.empty()) {
+  while (last_name.empty()) {
     std::cout << "> last name: ";
-    std::getline(istream, last_name_);
+    std::getline(istream, last_name);
   }
 
-  while (nickname_.empty()) {
+  while (nickname.empty()) {
     std::cout << "> nickname: ";
-    std::getline(istream, nickname_);
+    std::getline(istream, nickname);
   }
 
-  while (phone_.empty()) {
+  while (phone.empty()) {
     std::cout << "> phone number: ";
-    std::getline(istream, phone_);
+    std::getline(istream, phone);
   }
 
-  while (secret_.empty()) {
+  while (secret.empty()) {
     std::cout << "> darkest secret: ";
-    std::getline(istream, secret_);
+    std::getline(istream, secret);
   }
   return istream;
 }
@@ -62,9 +68,9 @@ std::istream& operator>>(std::istream& istream, Contact& contact) {
 }
 
 Contact::Contact(void) {
-  first_name_ = "";
-  last_name_ = "";
-  nickname_ = "";
-  phone_ = "";
-  secret_ = "";
+  first_name = "";
+  last_name = "";
+  nickname = "";
+  phone = "";
+  secret = "";
 }

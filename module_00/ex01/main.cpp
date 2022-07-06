@@ -1,29 +1,34 @@
 #include <cstddef>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 
 #include "Contact.h"
 #include "PhoneBook.h"
 
-void SearchCmd(PhoneBook &phonebook) {
+void SearchCmd(PhoneBook& phonebook) {
   if (phonebook.GetSize() > 0) {
     std::cout << phonebook;
     std::cout << "> contact id: ";
-    std::size_t index;
-    std::cin >> index;
+    std::string input;
+    std::getline(std::cin, input);
     try {
-      const Contact &contact = phonebook.GetContactByIndex(index);
-      std::cout << contact;
-    } catch (std::exception &ex) {
+      if (input.length() == 1 && input[0] >= '1' && input[0] < '8') {
+        std::size_t index = input[0] - '0';
+        const Contact& contact = phonebook.GetContactByIndex(index);
+        std::cout << contact;
+      } else {
+        throw std::out_of_range("out of range");
+      }
+    } catch (std::exception& ex) {
       std::cout << "ERROR: contact id is invalid!" << std::endl;
     }
-    std::cin.ignore();
   } else {
     std::cout << "ERROR: no contacts in phonebook!" << std::endl;
   }
 }
 
-void AddCmd(PhoneBook &phonebook) {
+void AddCmd(PhoneBook& phonebook) {
   Contact contact;
   std::cin >> contact;
   phonebook.AddContact(contact);

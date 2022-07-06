@@ -13,7 +13,7 @@ void SearchCmd(PhoneBook& phonebook) {
     std::string input;
     std::getline(std::cin, input);
     try {
-      if (input.length() == 1 && input[0] >= '1' && input[0] < '8') {
+      if (input.length() == 1 && input[0] >= '0' && input[0] < '8') {
         std::size_t index = input[0] - '0';
         const Contact& contact = phonebook.GetContactByIndex(index);
         std::cout << contact;

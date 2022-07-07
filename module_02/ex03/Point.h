@@ -20,10 +20,16 @@ class Point {
   Point(Fixed x, Fixed y);
   Point(const Point& p);
 
-  Point& operator=(const Point& p);
+  Fixed const& getX(void) const;
+  Fixed const& getY(void) const;
+
+  Point& operator=(Point const& p);
+  bool operator==(Point const& other) const;
 
   ~Point();
 };
+
+std::ostream& operator<<(std::ostream& os, Point const& point);
 
 bool bsp(Point const a, Point const b, Point const c, Point const point);
 

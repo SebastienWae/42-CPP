@@ -6,7 +6,7 @@ CC = c++
 CFLAGS = -std=c++98 -g
 WARNING = -Wall -Wextra -Werror
 
-SRCS = main.cpp Fixed.cpp
+SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 
 .PHONY: all

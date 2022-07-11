@@ -1,5 +1,5 @@
-#ifndef SCAVTRAP_H
-#define SCAVTRAP_H
+#ifndef FRAGTRAP_H
+#define FRAGTRAP_H
 
 #include "ClapTrap.h"
 

@@ -1,4 +1,4 @@
-NAME = unnecessary
+NAME = ex03
 
 RM = rm -rf
 

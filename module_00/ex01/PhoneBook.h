@@ -11,10 +11,10 @@
 
 class PhoneBook {
   Contact contacts_[MAX_CONTACTS];
-  std::size_t c_index;
-  std::size_t c_total;
+  std::size_t c_index_;
+  std::size_t c_total_;
 
- public:
+public:
   std::size_t GetSize(void) const;
 
   void AddContact(Contact& contact);

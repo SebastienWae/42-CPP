@@ -4,8 +4,8 @@
 
 #include "Weapon.h"
 
-HumanA::HumanA(std::string name, Weapon& weapon) : name(name), weapon(weapon) {}
+HumanA::HumanA(std::string name, Weapon& weapon) : name_(name), weapon_(weapon) {}
 
-void HumanA::attack() const {
-  std::cout << name << " attacks with their " << weapon.getType() << std::endl;
+void HumanA::Attack() const {
+  std::cout << name_ << " attacks with their " << weapon_.GetType() << std::endl;
 }

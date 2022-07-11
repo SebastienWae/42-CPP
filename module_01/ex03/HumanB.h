@@ -4,12 +4,12 @@
 #include "Weapon.h"
 
 class HumanB {
-  Weapon* weapon;
-  std::string name;
+  Weapon* weapon_;
+  std::string name_;
 
- public:
-  void attack(void) const;
-  void setWeapon(Weapon& new_weapon);
+public:
+  void Attack(void) const;
+  void SetWeapon(Weapon& new_weapon);
 
   HumanB(std::string name);
 };

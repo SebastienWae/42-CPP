@@ -4,11 +4,11 @@
 #include "Weapon.h"
 
 class HumanA {
-  std::string name;
-  Weapon& weapon;
+  std::string name_;
+  Weapon& weapon_;
 
- public:
-  void attack(void) const;
+public:
+  void Attack(void) const;
 
   HumanA(std::string name, Weapon& weapon);
 };

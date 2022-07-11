@@ -1,4 +1,4 @@
-NAME = orthodox 
+NAME = ex03 
 
 RM = rm -rf
 

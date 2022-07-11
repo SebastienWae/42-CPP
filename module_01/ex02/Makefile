@@ -1,4 +1,4 @@
-NAME = this_is_brain
+NAME = ex02
 
 RM = rm -rf
 

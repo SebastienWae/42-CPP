@@ -1,23 +1,22 @@
 #include "Fixed.h"
 #include "Point.h"
 
-bool bsp(Point const a, Point const b, Point const c, Point const point) {
+bool Bsp(Point const a, Point const b, Point const c, Point const point) {
   if (point == a || point == b || point == c) {
     return false;
   }
 
-  Point const ab(b.getX() - a.getX(), b.getY() - a.getY());
-  Point const bc(c.getX() - b.getX(), c.getY() - b.getY());
-  Point const ca(a.getX() - c.getX(), a.getY() - c.getY());
+  Point const ab(b.GetX() - a.GetX(), b.GetY() - a.GetY());
+  Point const bc(c.GetX() - b.GetX(), c.GetY() - b.GetY());
+  Point const ca(a.GetX() - c.GetX(), a.GetY() - c.GetY());
 
-  Point const ap(point.getX() - a.getX(), point.getY() - a.getY());
-  Point const bp(point.getX() - b.getX(), point.getY() - b.getY());
-  Point const cp(point.getX() - c.getX(), point.getY() - c.getY());
+  Point const ap(point.GetX() - a.GetX(), point.GetY() - a.GetY());
+  Point const bp(point.GetX() - b.GetX(), point.GetY() - b.GetY());
+  Point const cp(point.GetX() - c.GetX(), point.GetY() - c.GetY());
 
-  Fixed const abXap = Fixed((ab.getX() * ap.getY()) - (ap.getX() * ab.getY()));
-  Fixed const bcXbp = Fixed((bc.getX() * bp.getY()) - (bp.getX() * bc.getY()));
-  Fixed const caXcp = Fixed((ca.getX() * cp.getY()) - (cp.getX() * ca.getY()));
+  Fixed const ab_ap = Fixed((ab.GetX() * ap.GetY()) - (ap.GetX() * ab.GetY()));
+  Fixed const bc_bp = Fixed((bc.GetX() * bp.GetY()) - (bp.GetX() * bc.GetY()));
+  Fixed const ca_cp = Fixed((ca.GetX() * cp.GetY()) - (cp.GetX() * ca.GetY()));
 
-  return (abXap < 0 && bcXbp < 0 && caXcp < 0) ||
-         (abXap > 0 && bcXbp > 0 && caXcp > 0);
+  return (ab_ap < 0 && bc_bp < 0 && ca_cp < 0) || (ab_ap > 0 && bc_bp > 0 && ca_cp > 0);
 }

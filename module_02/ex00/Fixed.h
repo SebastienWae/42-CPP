@@ -2,17 +2,17 @@
 #define FIXED_H
 
 class Fixed {
-  int value;
-  static const int fractional = 8;
+  int value_;
+  static const int Fractional = 8;
 
- public:
-  int getRawBits(void) const;
-  void setRawBits(int const raw);
-
-  Fixed& operator=(const Fixed& f);
+public:
+  int GetRawBits(void) const;
+  void SetRawBits(int const raw);
 
   Fixed(void);
   Fixed(const Fixed& f);
+
+  Fixed& operator=(const Fixed& f);
 
   ~Fixed();
 };

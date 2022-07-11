@@ -1,12 +1,13 @@
 #include <iostream>
 #include <string>
+
 #include "Fixed.h"
 #include "Point.h"
 
 void printTest(Point const a, Point const b, Point const c, Point const point) {
-  bool result = bsp(a, b, c, point);
+  bool result = Bsp(a, b, c, point);
 
-  std::string const resultStr = (result) ? "inside" : "outside";
+  std::string const result_str = (result) ? "inside" : "outside";
 
   if (result) {
     std::cout << "\x1B[32m";  // GREEN
@@ -14,8 +15,8 @@ void printTest(Point const a, Point const b, Point const c, Point const point) {
     std::cout << "\x1B[31m";  // RED
   }
 
-  std::cout << point << " is " << resultStr << " of Triangle(" << a << ", " << b
-            << ", " << c << ")." << std::endl;
+  std::cout << point << " is " << result_str << " of Triangle(" << a << ", " << b << ", " << c
+            << ")." << std::endl;
   std::cout << "\033[0m";  // RESET
 }
 

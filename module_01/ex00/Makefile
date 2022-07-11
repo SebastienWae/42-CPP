@@ -1,4 +1,4 @@
-NAME = BraiiiiiiinnnzzzZ 
+NAME = ex00 
 
 RM = rm -rf
 

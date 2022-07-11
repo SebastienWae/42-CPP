@@ -1,4 +1,4 @@
-NAME = claptrap
+NAME = ex02
 
 RM = rm -rf
 

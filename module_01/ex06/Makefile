@@ -1,4 +1,4 @@
-NAME = harlFilter
+NAME = ex06
 
 RM = rm -rf
 

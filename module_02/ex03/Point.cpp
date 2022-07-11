@@ -1,18 +1,15 @@
 #include "Point.h"
+
 #include "Fixed.h"
 
-Point::Point(void) : x(0), y(0) {}
+Point::Point() : x_(0), y_(0) {}
 
-Point::Point(Fixed x, Fixed y) : x(x), y(y) {}
+Point::Point(Fixed x, Fixed y) : x_(x), y_(y) {}
 
-Point::Point(const Point& p) : x(p.x), y(p.y) {}
+Point::Point(const Point& p) : x_(p.x_), y_(p.y_) {}
 
-Fixed const& Point::getX(void) const {
-  return x;
-}
-Fixed const& Point::getY(void) const {
-  return y;
-}
+Fixed const& Point::GetX(void) const { return x_; }
+Fixed const& Point::GetY(void) const { return y_; }
 
 Point::~Point() {}
 
@@ -23,10 +20,10 @@ Point& Point::operator=(const Point& p) {
 }
 
 bool Point::operator==(Point const& other) const {
-  return x == other.getX() && y == other.getY();
+  return x_ == other.GetX() && y_ == other.GetY();
 }
 
 std::ostream& operator<<(std::ostream& os, Point const& point) {
-  os << "Point(" << point.getX() << ", " << point.getY() << ")";
+  os << "Point(" << point.GetX() << ", " << point.GetY() << ")";
   return os;
 }

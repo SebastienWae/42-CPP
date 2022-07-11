@@ -1,4 +1,4 @@
-NAME = tests
+NAME = test
 
 RM = rm -rf
 

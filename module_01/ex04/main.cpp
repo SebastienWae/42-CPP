@@ -15,8 +15,7 @@ int main(int argc, char* argv[]) {
       return 1;
     }
 
-    std::string new_file_name =
-        static_cast<std::string>(argv[1]).append(".replace");
+    std::string new_file_name = static_cast<std::string>(argv[1]).append(".replace");
     std::ofstream new_file(new_file_name.c_str());
     if (!new_file.is_open()) {
       std::cout << "Unable to open file" << std::endl;

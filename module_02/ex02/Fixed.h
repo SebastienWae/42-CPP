@@ -5,15 +5,15 @@
 #include <iostream>
 
 class Fixed {
-  int value;
-  static const int fractional = 8;
+  int value_;
+  static const int Fractional = 8;
 
- public:
-  int getRawBits(void) const;
-  void setRawBits(int const raw);
+public:
+  int GetRawBits(void) const;
+  void SetRawBits(int const raw);
 
-  float toFloat(void) const;
-  int toInt(void) const;
+  float ToFloat(void) const;
+  int ToInt(void) const;
 
   Fixed& operator=(const Fixed& f);
 
@@ -34,15 +34,15 @@ class Fixed {
   Fixed operator++(int);
   Fixed operator--(int);
 
-  static Fixed& min(Fixed& a, Fixed& b);
-  static const Fixed& min(const Fixed& a, const Fixed& b);
+  static Fixed& Min(Fixed& a, Fixed& b);
+  static const Fixed& Min(const Fixed& a, const Fixed& b);
 
-  static Fixed& max(Fixed& a, Fixed& b);
-  static const Fixed& max(const Fixed& a, const Fixed& b);
+  static Fixed& Max(Fixed& a, Fixed& b);
+  static const Fixed& Max(const Fixed& a, const Fixed& b);
 
   Fixed& operator<<(const Fixed& f);
 
-  Fixed(void);
+  Fixed();
   Fixed(const int i);
   Fixed(const float f);
   Fixed(const Fixed& f);

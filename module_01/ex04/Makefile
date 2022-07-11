@@ -1,4 +1,4 @@
-NAME = notsed
+NAME = ex04
 
 RM = rm -rf
 

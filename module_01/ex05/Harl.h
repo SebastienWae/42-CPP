@@ -5,20 +5,20 @@
 
 #define FUNC_N 4
 class Harl {
-  void debug(void);
-  void info(void);
-  void warning(void);
-  void error(void);
+  void Debug(void);
+  void Info(void);
+  void Warning(void);
+  void Error(void);
 
-  typedef void (Harl::*logFns)(void);
-  logFns fns[FUNC_N];
+  typedef void (Harl::*LogFns)(void);
+  LogFns fns_[FUNC_N];
 
- public:
+public:
   static std::string name_arr[FUNC_N];
 
-  void complain(std::string level);
+  void Complain(std::string level);
 
-  Harl(void);
+  Harl();
 };
 
 #endif

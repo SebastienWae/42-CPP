@@ -5,9 +5,9 @@
 #include <string>
 
 class Contact {
-  std::string first_name, last_name, nickname, phone, secret;
+  std::string first_name_, last_name_, nickname_, phone_, secret_;
 
- public:
+public:
   std::string GetFirstName(void) const;
   std::string GetLastName(void) const;
   std::string GetNickName(void) const;

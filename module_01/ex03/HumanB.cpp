@@ -4,12 +4,10 @@
 
 #include "Weapon.h"
 
-HumanB::HumanB(std::string name) : name(name) {}
+HumanB::HumanB(std::string name) : name_(name) {}
 
-void HumanB::attack() const {
-  std::cout << name << " attacks with their " << weapon->getType() << std::endl;
+void HumanB::Attack() const {
+  std::cout << name_ << " attacks with their " << weapon_->GetType() << std::endl;
 }
 
-void HumanB::setWeapon(Weapon& new_weapon) {
-  weapon = &new_weapon;
-}
+void HumanB::SetWeapon(Weapon& new_weapon) { weapon_ = &new_weapon; }

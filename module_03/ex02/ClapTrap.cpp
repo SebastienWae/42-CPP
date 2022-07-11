@@ -28,53 +28,103 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& copy) {
 }
 
 ClapTrap::~ClapTrap() {
-  std::cout << "ClapTrap " << name << " was destroyed!" << std::endl;
+  std::cout << "ClapTrap " << getName() << " was destroyed!" << std::endl;
+}
+
+std::string ClapTrap::getName() const {
+  return name;
+}
+
+unsigned int ClapTrap::getHitPoints() const {
+  return hit_points;
+}
+
+unsigned int ClapTrap::getEnergyPoints() const {
+  return energy_points;
+}
+
+unsigned int ClapTrap::getAttackDamage() const {
+  return attack_damage;
+}
+
+void ClapTrap::setHitPoints(unsigned int n) {
+  hit_points = n;
+}
+
+void ClapTrap::setEnergyPoints(unsigned int n) {
+  energy_points = n;
+}
+
+void ClapTrap::setAttackDamage(unsigned int n) {
+  attack_damage = n;
+}
+
+unsigned int ClapTrap::reduceHitPoints(unsigned int n) {
+  if (n >= hit_points) {
+    hit_points = 0;
+  } else {
+    hit_points -= n;
+  }
+  return hit_points;
+}
+
+unsigned int ClapTrap::increaseHitPoints(unsigned int n) {
+  if (n >= std::numeric_limits<unsigned int>::max() - hit_points) {
+    hit_points = std::numeric_limits<unsigned int>::max();
+  } else {
+    hit_points += n;
+  }
+  return hit_points;
+}
+
+unsigned int ClapTrap::reduceEnergyPoints(unsigned int n) {
+  if (n >= energy_points) {
+    energy_points = 0;
+  } else {
+    energy_points -= n;
+  }
+  return energy_points;
 }
 
 void ClapTrap::attack(const std::string& target) {
-  if (hit_points == 0) {
-    std::cout << "ClapTrap " << name << " cannot attack " << target
+  if (getHitPoints() == 0) {
+    std::cout << "ClapTrap " << getName() << " cannot attack " << target
               << ". It's broken." << std::endl;
-  } else if (energy_points == 0) {
-    std::cout << "ClapTrap " << name << " cannot attack " << target
+  } else if (getEnergyPoints() == 0) {
+    std::cout << "ClapTrap " << getName() << " cannot attack " << target
               << ". It's out of energy." << std::endl;
   } else {
-    std::cout << "ClapTrap " << name << " attacks " << target << ", causing "
-              << attack_damage << " points of "
+    std::cout << "ClapTrap " << getName() << " attacks " << target
+              << ", causing " << getAttackDamage() << " points of "
               << "damage!" << std::endl;
-    energy_points--;
+    reduceEnergyPoints(1);
   }
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-  if (hit_points == 0) {
-    std::cout << "Stop attacking ClapTrap " << name << " it's already broken!"
-              << std::endl;
+  if (getHitPoints() == 0) {
+    std::cout << "Stop attacking ClapTrap " << getName()
+              << " it's already broken!" << std::endl;
   } else {
-    std::cout << "ClapTrap " << name << " took " << amount
+    std::cout << "ClapTrap " << getName() << " took " << amount
               << " points of damage!" << std::endl;
-    if (amount >= hit_points) {
-      std::cout << "ClapTrap " << name << " is out of service." << std::endl;
-      hit_points = 0;
-    } else {
-      hit_points -= amount;
+    if (reduceHitPoints(amount) == 0) {
+      std::cout << "ClapTrap " << getName() << " is out of service."
+                << std::endl;
     }
   }
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-  if (hit_points == 0) {
-    std::cout << "ClapTrap " << name << " cannot be repaired." << std::endl;
-  } else if (energy_points == 0) {
-    std::cout << "ClapTrap " << name
+  if (getHitPoints() == 0) {
+    std::cout << "ClapTrap " << getName() << " cannot be repaired."
+              << std::endl;
+  } else if (getEnergyPoints() == 0) {
+    std::cout << "ClapTrap " << getName()
               << " doesn't have enough energy to repair itself." << std::endl;
   } else {
-    if (amount >= std::numeric_limits<unsigned int>::max() - hit_points) {
-      amount = std::numeric_limits<unsigned int>::max() - hit_points;
-    }
-    std::cout << "ClapTrap " << name << " repaired itself of " << amount
-              << " hit points." << std::endl;
-    energy_points--;
-    hit_points += amount;
+    std::cout << "ClapTrap " << getName() << " repaired itself." << std::endl;
+    increaseHitPoints(amount);
+    reduceEnergyPoints(1);
   }
 }

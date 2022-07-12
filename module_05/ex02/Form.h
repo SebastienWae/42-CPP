@@ -36,7 +36,11 @@ public:
   int getGradeReqSign() const;
   int getGradeReqExec() const;
 
+  void setSigned(bool b);
+
   bool beSigned(Bureaucrat* bureaucrat) throw(GradeTooLowException);
+
+  virtual bool execute(Bureaucrat const& executor) const = 0;
 };
 
 std::ostream& operator<<(std::ostream& os, Form& f);

@@ -69,3 +69,12 @@ void Bureaucrat::signForm(Form* form) {
               << " because his grade is too low." << std::endl;
   }
 }
+
+void Bureaucrat::executeForm(Form const& form) const {
+  if (form.execute(*this)) {
+    std::cout << getName() << " executed " << form.getName() << std::endl;
+  } else {
+    std::cout << "form: " << form.getName() << " was not executed by " << getName()
+              << " because it is not signed." << std::endl;
+  }
+}

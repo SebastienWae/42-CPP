@@ -6,7 +6,7 @@ CC = c++
 CFLAGS = -std=c++98 -g
 WARNING = -Wall -Wextra -Werror
 
-SRCS = main.cpp Bureaucrat.cpp Form.cpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 
 .PHONY: all

@@ -38,6 +38,7 @@ public:
   void decrementGrade() throw(GradeTooLowException);
 
   void signForm(Form* form);
+  void executeForm(Form const& form) const;
 };
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat const& b);

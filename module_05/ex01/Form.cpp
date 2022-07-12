@@ -34,7 +34,7 @@ int Form::getGradeReqSign() const { return grade_req_sign; }
 int Form::getGradeReqExec() const { return grade_req_sign; }
 
 bool Form::beSigned(Bureaucrat* bureaucrat) throw(Form::GradeTooLowException) {
-  if (bureaucrat->getGrade() < grade_req_sign) {
+  if (bureaucrat->getGrade() > grade_req_sign) {
     throw GradeTooLowException();
   }
   if (is_signed) {

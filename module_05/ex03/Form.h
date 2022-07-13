@@ -29,7 +29,7 @@ public:
 
   Form& operator=(const Form& other);
 
-  ~Form();
+  virtual ~Form();
 
   std::string getName() const;
   bool getIsSigned() const;

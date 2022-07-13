@@ -37,7 +37,7 @@ public:
   void incrementGrade() throw(GradeTooHighException);
   void decrementGrade() throw(GradeTooLowException);
 
-  void signForm(Form* form);
+  void signForm(Form& form);
 };
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat const& b);

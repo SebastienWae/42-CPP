@@ -28,7 +28,7 @@ int main(void) {
 
       std::cout << f << std::endl;
       std::cout << b << std::endl;
-      b.signForm(&f);
+      b.signForm(f);
 
     } catch (std::exception &e) {
       std::cout << e.what() << std::endl;
@@ -42,7 +42,7 @@ int main(void) {
 
       std::cout << f << std::endl;
       std::cout << b << std::endl;
-      b.signForm(&f);
+      b.signForm(f);
 
       std::cout << f;
 

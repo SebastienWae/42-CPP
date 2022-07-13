@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <string>
 
 #include "Form.h"
 
@@ -28,9 +29,8 @@ bool ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
   if (executor.getGrade() > getGradeReqExec()) {
     throw GradeTooLowException();
   }
-  std::ofstream target_file;
-  target_file.open(target + "_shrubbery");
-  if (target_file != 0) {
+  std::ofstream target_file((target + "_shrubbery").c_str());
+  if (target_file.is_open()) {
     target_file << "            ,@@@@@@@," << std::endl;
     target_file << "    ,,,.   ,@@@@@@/@@,  .oo8888o." << std::endl;
     target_file << " ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o" << std::endl;
@@ -42,6 +42,9 @@ bool ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
     target_file << "    |.|        | |         | |" << std::endl;
     target_file << " \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_" << std::endl;
     target_file.close();
+  } else {
+    std::cout << "Unable to open file" << std::endl;
   }
+  target_file.close();
   return true;
 }

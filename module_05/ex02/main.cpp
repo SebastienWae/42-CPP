@@ -36,9 +36,9 @@ int main(void) {
       ShrubberyCreationForm s("s1");
       Bureaucrat b("steve", 1);
 
-      b.signForm(&r);
-      b.signForm(&f);
-      b.signForm(&s);
+      b.signForm(r);
+      b.signForm(f);
+      b.signForm(s);
 
       b.executeForm(r);
       b.executeForm(f);

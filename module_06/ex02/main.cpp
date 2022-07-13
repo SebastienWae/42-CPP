@@ -1,6 +1,5 @@
 #include <cstdlib>
 #include <iostream>
-#include <typeinfo>
 
 #include "A.h"
 #include "B.h"
@@ -51,19 +50,34 @@ void identify(Base& p) {
 }
 
 int main(void) {
-  srand(time(NULL));
-  Base* one = generate();
-  Base* two = generate();
-  Base* three = generate();
-  Base* four = generate();
+  {
+    std::cout << "## TEST 1 ##" << std::endl;
+    A* a = new A;
+    B* b = new B;
+    C* c = new C;
+    identify(a);
+    identify(*a);
+    identify(b);
+    identify(*b);
+    identify(c);
+    identify(*c);
+  }
+  {
+    std::cout << "## TEST 2 ##" << std::endl;
+    srand(time(NULL));
+    Base* one = generate();
+    Base* two = generate();
+    Base* three = generate();
+    Base* four = generate();
 
-  identify(one);
-  identify(two);
-  identify(three);
-  identify(four);
+    identify(one);
+    identify(two);
+    identify(three);
+    identify(four);
 
-  identify(*one);
-  identify(*two);
-  identify(*three);
-  identify(*four);
+    identify(*one);
+    identify(*two);
+    identify(*three);
+    identify(*four);
+  }
 }

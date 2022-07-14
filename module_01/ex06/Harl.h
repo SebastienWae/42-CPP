@@ -6,17 +6,17 @@
 #define FUNC_N 4
 
 class Harl {
-  int filter_;
+  int filter;
 
-  void Debug(void);
-  void Info(void);
-  void Warning(void);
-  void Error(void);
+  void debug(void);
+  void info(void);
+  void warning(void);
+  void error(void);
 
 public:
   static std::string name_arr[FUNC_N];
 
-  void Complain(std::string level);
+  void complain(std::string level);
 
   Harl(std::string filter);
 };

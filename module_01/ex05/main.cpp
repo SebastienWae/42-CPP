@@ -3,10 +3,10 @@
 int main(void) {
   Harl harl;
 
-  harl.Complain("DEBUG");
-  harl.Complain("INFO");
-  harl.Complain("WARNING");
-  harl.Complain("ERROR");
-  harl.Complain("TEST");
-  harl.Complain("");
+  harl.complain("DEBUG");
+  harl.complain("INFO");
+  harl.complain("WARNING");
+  harl.complain("ERROR");
+  harl.complain("TEST");
+  harl.complain("");
 }

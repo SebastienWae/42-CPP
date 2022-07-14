@@ -2,10 +2,16 @@
 
 #include "Zombie.h"
 
-Zombie* ZombieHorde(int N, std::string name) {
-  Zombie* horde = new Zombie[N];
-  for (int i = 0; i < N; ++i) {
-    horde[i].SetName(name);
+Zombie* zombieHorde(int n, std::string name) {
+  Zombie* horde = NULL;
+
+  if (n <= 0) {
+    return horde;
   }
+  horde = new Zombie[n];
+  for (int i = 0; i < n; i++) {
+    horde[i].setName(name);
+  }
+
   return horde;
 }

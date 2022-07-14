@@ -4,17 +4,16 @@
 #include <string>
 
 class Zombie {
-  std::string name_;
+  std::string name;
 
 public:
-  void Announce(void);
-  void SetName(std::string name);
-
   Zombie();
   Zombie(std::string name);
   ~Zombie();
-};
 
-Zombie* ZombieHorde(int N, std::string name);
+  void announce() const;
+
+  void setName(std::string name);
+};
 
 #endif

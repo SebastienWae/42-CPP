@@ -6,7 +6,7 @@ CC = c++
 CFLAGS = -std=c++98 -g
 WARNING = -Wall -Wextra -Werror
 
-SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 
 .PHONY: all

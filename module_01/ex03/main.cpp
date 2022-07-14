@@ -2,21 +2,20 @@
 #include "HumanB.h"
 #include "Weapon.h"
 
-int main() {
+int main(void) {
   {
     Weapon club = Weapon("crude spiked club");
     HumanA bob("Bob", club);
-    bob.Attack();
-    club.SetType("some other type of club");
-    bob.Attack();
+    bob.attack();
+    club.setType("some other type of club");
+    bob.attack();
   }
   {
     Weapon club = Weapon("crude spiked club");
     HumanB jim("Jim");
-    jim.SetWeapon(club);
-    jim.Attack();
-    club.SetType("some other type of club");
-    jim.Attack();
+    jim.setWeapon(club);
+    jim.attack();
+    club.setType("some other type of club");
+    jim.attack();
   }
-  return 0;
 }

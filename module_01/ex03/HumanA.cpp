@@ -1,11 +1,12 @@
 #include "HumanA.h"
 
 #include <iostream>
+#include <string>
 
 #include "Weapon.h"
 
-HumanA::HumanA(std::string name, Weapon& weapon) : name_(name), weapon_(weapon) {}
+HumanA::HumanA(std::string name, Weapon& weapon) : name(name), weapon(weapon) {}
 
-void HumanA::Attack() const {
-  std::cout << name_ << " attacks with their " << weapon_.GetType() << std::endl;
+void HumanA::attack() const {
+  std::cout << name << " attacks with their " << weapon.getType() << std::endl;
 }

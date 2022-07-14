@@ -2,7 +2,6 @@
 
 #include <cstddef>
 #include <iomanip>
-#include <iostream>
 #include <ostream>
 #include <stdexcept>
 #include <string>
@@ -10,16 +9,14 @@
 #include "Contact.h"
 #include "utils.h"
 
-#define PRINT_COL_MAX_SIZE 10
+PhoneBook::PhoneBook(void) : c_index_(0), c_total_(0) {}
 
-PhoneBook::PhoneBook(void) {
-  c_index_ = 0;
-  c_total_ = 0;
-}
+std::size_t PhoneBook::GetTotalContacts() const { return c_total_; }
 
-std::size_t PhoneBook::GetSize(void) const { return c_total_; }
+void PhoneBook::AddContact() {
+  Contact contact;
 
-void PhoneBook::AddContact(Contact& contact) {
+  std::cin >> contact;
   contacts_[c_index_] = contact;
   c_index_ = (c_index_ + 1) % MAX_CONTACTS;
   if (c_total_ < MAX_CONTACTS) {
@@ -27,30 +24,49 @@ void PhoneBook::AddContact(Contact& contact) {
   }
 }
 
+void PhoneBook::SearchContacts() const {
+  if (c_total_ > 0) {
+    std::cout << *this;
+    std::cout << "> contact id: ";
+    std::string input;
+    std::getline(std::cin, input);
+    try {
+      if (input.length() == 1 && input[0] >= '0' && input[0] < MAX_CONTACTS + '0') {
+        std::size_t index = input[0] - '0';
+        const Contact& contact = GetContactByIndex(index);
+        std::cout << contact;
+      } else {
+        throw std::out_of_range("");
+      }
+    } catch (std::exception& ex) {
+      std::cout << "ERROR: contact id is invalid!" << std::endl;
+    }
+  } else {
+    std::cout << "ERROR: no contacts in phonebook!" << std::endl;
+  }
+}
+
 const Contact& PhoneBook::GetContactByIndex(std::size_t index) const {
   if (index < c_total_) {
     return contacts_[index];
   }
-  throw std::out_of_range("out of range");
+  throw std::out_of_range("");
 }
 
-std::ostream& PhoneBook::Print(std::ostream& ostream) const {
+std::ostream& operator<<(std::ostream& ostream, const PhoneBook& phonebook) {
   ostream << "|      index | first name |  last name |   nickname |" << std::endl;
   ostream << "|------------|------------|------------|------------|" << std::endl;
-  for (std::size_t i = 0; i < c_total_; ++i) {
+  for (std::size_t i = 0; i < phonebook.GetTotalContacts(); ++i) {
+    const Contact& c = phonebook.GetContactByIndex(i);
     ostream << "| " << std::setw(PRINT_COL_MAX_SIZE) << i;
     ostream << " | " << std::setw(PRINT_COL_MAX_SIZE)
-            << Truncate(contacts_[i].GetFirstName(), PRINT_COL_MAX_SIZE);
+            << Truncate(c.GetFirstName(), PRINT_COL_MAX_SIZE);
     ostream << " | " << std::setw(PRINT_COL_MAX_SIZE)
-            << Truncate(contacts_[i].GetLastName(), PRINT_COL_MAX_SIZE);
+            << Truncate(c.GetLastName(), PRINT_COL_MAX_SIZE);
     ostream << " | " << std::setw(PRINT_COL_MAX_SIZE)
-            << Truncate(contacts_[i].GetNickName(), PRINT_COL_MAX_SIZE);
+            << Truncate(c.GetNickName(), PRINT_COL_MAX_SIZE);
     ostream << " |" << std::endl;
   }
   ostream << "|------------|------------|------------|------------|" << std::endl;
   return ostream;
-}
-
-std::ostream& operator<<(std::ostream& ostream, const PhoneBook& phonebook) {
-  return phonebook.Print(ostream);
 }

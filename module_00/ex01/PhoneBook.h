@@ -8,6 +8,7 @@
 #include "Contact.h"
 
 #define MAX_CONTACTS 8
+#define PRINT_COL_MAX_SIZE 10
 
 class PhoneBook {
   Contact contacts_[MAX_CONTACTS];
@@ -15,14 +16,14 @@ class PhoneBook {
   std::size_t c_total_;
 
 public:
-  std::size_t GetSize(void) const;
-
-  void AddContact(Contact& contact);
+  std::size_t GetTotalContacts() const;
+  void AddContact();
+  void SearchContacts() const;
   const Contact& GetContactByIndex(std::size_t index) const;
 
   std::ostream& Print(std::ostream& ostream) const;
 
-  PhoneBook(void);
+  PhoneBook();
 };
 
 std::ostream& operator<<(std::ostream& ostream, const PhoneBook& phonebook);

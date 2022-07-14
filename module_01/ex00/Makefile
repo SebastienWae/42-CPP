@@ -1,4 +1,4 @@
-NAME = ex00 
+NAME = ex00
 
 RM = rm -rf
 
@@ -6,7 +6,7 @@ CC = c++
 CFLAGS = -std=c++98 -g
 WARNING = -Wall -Wextra -Werror
 
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+SRCS = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 OBJS = $(SRCS:%.cpp=%.o)
 
 .PHONY: all

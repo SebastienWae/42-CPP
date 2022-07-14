@@ -2,7 +2,7 @@
 
 #include "Zombie.h"
 
-void RandomChump(std::string name) {
-  Zombie zombie = Zombie(name);
-  zombie.Announce();
+void randomChump(std::string name) {
+  Zombie chump = Zombie(name);
+  chump.announce();
 }

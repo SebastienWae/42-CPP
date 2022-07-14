@@ -2,7 +2,7 @@
 
 #include "Zombie.h"
 
-Zombie* NewZombie(std::string name) {
-  Zombie* zombie = new Zombie(name);
-  return zombie;
+Zombie* newZombie(std::string name) {
+  Zombie* z = new Zombie(name);
+  return z;
 }

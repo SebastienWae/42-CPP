@@ -2,15 +2,16 @@
 #include <string>
 
 int main(void) {
-  std::string string = "HI THIS IS BRAIN";
-  std::string* stringPTR = &string;
-  std::string& stringREF = string;
+  std::string brainzSTR = "HI THIS IS BRAIN";
+  std::string* stringPTR = &brainzSTR;
+  std::string& stringREF = brainzSTR;
 
-  std::cout << &string << std::endl;
-  std::cout << stringPTR << std::endl;
-  std::cout << &stringREF << std::endl;
+  std::cout << "memory address of brainzSTR: " << &brainzSTR << std::endl;
+  std::cout << "memory address of stringPTR: " << &stringPTR << std::endl;
+  std::cout << "memory address of stringREF: " << &stringREF << std::endl;
 
-  std::cout << string << std::endl;
-  std::cout << *stringPTR << std::endl;
-  std::cout << stringREF << std::endl;
+  std::cout << "value of string: " << brainzSTR << std::endl;
+  std::cout << "value at stringREF: " << *stringPTR << std::endl;
+  std::cout << "value at stringREF: " << stringREF << std::endl;
+  return 0;
 }

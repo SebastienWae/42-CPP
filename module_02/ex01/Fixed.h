@@ -1,31 +1,29 @@
 #ifndef FIXED_H
 #define FIXED_H
 
-#include <cmath>
-#include <iostream>
+#include <ostream>
 
 class Fixed {
-  int value_;
-  static const int Fractional = 8;
+  static int const fractionalBits;
+  int value;
 
 public:
-  int GetRawBits(void) const;
-  void SetRawBits(int const raw);
-
-  float ToFloat(void) const;
-  int ToInt(void) const;
-
-  Fixed& operator=(const Fixed& f);
-  Fixed& operator<<(const Fixed& f);
-
   Fixed();
-  Fixed(const int i);
-  Fixed(const float f);
-  Fixed(const Fixed& f);
+  Fixed(int const value);
+  Fixed(float const value);
+  Fixed(Fixed const& other);
 
   ~Fixed();
+
+  Fixed& operator=(Fixed const& other);
+
+  int getRawBits(void) const;
+  void setRawBits(int const raw);
+
+  float toFloat(void) const;
+  int toInt(void) const;
 };
 
-std::ostream& operator<<(std::ostream& ostream, const Fixed& fixed);
+std::ostream& operator<<(std::ostream& os, Fixed const& fixed);
 
 #endif

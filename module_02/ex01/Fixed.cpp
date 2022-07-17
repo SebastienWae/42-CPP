@@ -2,42 +2,40 @@
 
 #include <cmath>
 #include <iostream>
-#include <ostream>
 
-Fixed::Fixed(void) : value_(0) { std::cout << "Default constructor called" << std::endl; }
+int const Fixed::fractionalBits = 8;
 
-Fixed::Fixed(const int i) {
-  std::cout << "Int constructor called" << std::endl;
-  SetRawBits(i << Fractional);
+Fixed::Fixed(void) : value(0) { std::cout << "Default Constructor called" << std::endl; }
+
+Fixed::Fixed(int const value) : value(value << fractionalBits) {
+  std::cout << "Int Constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float f) {
-  std::cout << "Float constructor called" << std::endl;
-  SetRawBits(round(f * (1 << Fractional)));
+Fixed::Fixed(float const value) : value(roundf(value * (1 << fractionalBits))) {
+  std::cout << "Float Constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& f) {
-  std::cout << "Copy constructor called" << std::endl;
-  SetRawBits(f.GetRawBits());
+Fixed::Fixed(Fixed const& other) : value(other.value) {
+  std::cout << "Copy Constructor called" << std::endl;
 }
 
 Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
-float Fixed::ToFloat(void) const { return static_cast<float>(GetRawBits()) / (1 << Fractional); }
-
-int Fixed::ToInt(void) const { return GetRawBits() / (1 << Fractional); }
-
-Fixed& Fixed::operator=(const Fixed& f) {
+Fixed& Fixed::operator=(Fixed const& other) {
   std::cout << "Copy assignment operator called" << std::endl;
-  SetRawBits(f.GetRawBits());
+  value = other.value;
   return *this;
 }
 
-int Fixed::GetRawBits(void) const { return value_; }
+int Fixed::getRawBits(void) const { return value; };
 
-void Fixed::SetRawBits(int const raw) { value_ = raw; }
+void Fixed::setRawBits(int const raw) { value = raw; }
 
-std::ostream& operator<<(std::ostream& ostream, const Fixed& fixed) {
-  ostream << fixed.ToFloat();
-  return ostream;
+float Fixed::toFloat(void) const { return static_cast<float>(value) / (1 << fractionalBits); }
+
+int Fixed::toInt(void) const { return value / (1 << fractionalBits); }
+
+std::ostream& operator<<(std::ostream& os, Fixed const& fixed) {
+  os << fixed.toFloat();
+  return os;
 }

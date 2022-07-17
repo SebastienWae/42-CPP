@@ -2,28 +2,29 @@
 
 #include "Fixed.h"
 
-Point::Point() : x_(0), y_(0) {}
+Point::Point() : x(0), y(0) {}
 
-Point::Point(Fixed x, Fixed y) : x_(x), y_(y) {}
+Point::Point(float const& x, float const& y) : x(Fixed(x)), y(Fixed(y)) {}
 
-Point::Point(const Point& p) : x_(p.x_), y_(p.y_) {}
+Point::Point(Fixed const& x, Fixed const& y) : x(x), y(y) {}
 
-Fixed const& Point::GetX(void) const { return x_; }
-Fixed const& Point::GetY(void) const { return y_; }
+Point::Point(Point const& other) : x(other.x), y(other.y) {}
+
+Fixed const& Point::getX(void) const { return x; }
+
+Fixed const& Point::getY(void) const { return y; }
 
 Point::~Point() {}
 
 // https://stackoverflow.com/questions/4136156/const-member-and-assignment-operator-how-to-avoid-the-undefined-behavior
-Point& Point::operator=(const Point& p) {
-  (void)p;
+Point& Point::operator=(const Point& other) {
+  (void)other;
   return *this;
 }
 
-bool Point::operator==(Point const& other) const {
-  return x_ == other.GetX() && y_ == other.GetY();
-}
+bool Point::operator==(Point const& other) const { return x == other.x && y == other.y; }
 
 std::ostream& operator<<(std::ostream& os, Point const& point) {
-  os << "Point(" << point.GetX() << ", " << point.GetY() << ")";
+  os << "Point(" << point.getX() << ", " << point.getY() << ")";
   return os;
 }

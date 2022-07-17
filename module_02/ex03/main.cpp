@@ -1,28 +1,26 @@
 #include <iostream>
 #include <string>
 
-#include "Fixed.h"
 #include "Point.h"
 
-void printTest(Point const a, Point const b, Point const c, Point const point) {
-  bool result = Bsp(a, b, c, point);
+bool bsp(Point const a, Point const b, Point const c, Point const point);
 
-  std::string const result_str = (result) ? "inside" : "outside";
+void printTest(Point const a, Point const b, Point const c, Point const point) {
+  bool result = bsp(a, b, c, point);
 
   if (result) {
-    std::cout << "\x1B[32m";  // GREEN
+    std::cout << "\x1B[32m";
   } else {
-    std::cout << "\x1B[31m";  // RED
+    std::cout << "\x1B[31m";
   }
-
-  std::cout << point << " is " << result_str << " of Triangle(" << a << ", " << b << ", " << c
-            << ")." << std::endl;
-  std::cout << "\033[0m";  // RESET
+  std::cout << point << " is " << (result ? "inside" : "outside") << " of Triangle(" << a << ", "
+            << b << ", " << c << ")." << std::endl;
+  std::cout << "\033[0m";
 }
 
 int main(void) {
   {
-    std::cout << "Test negative examples:" << std::endl;
+    std::cout << "### TEST OUTSIDE ###" << std::endl;
 
     Point const a(0.0f, 0.0f);
     Point const b(0.0f, 3.0f);
@@ -54,11 +52,9 @@ int main(void) {
     printTest(a3, b3, c3, pAB);
     printTest(a3, b3, c3, pBC);
     printTest(a3, b3, c3, pCA);
-
-    std::cout << std::string(80, '-') << std::endl;
   }
   {
-    std::cout << "Test positive examples:" << std::endl;
+    std::cout << "### TEST INSIDE ###" << std::endl;
 
     Point const a(0.0f, 0.0f);
     Point const b(0.0f, 3.0f);
@@ -78,8 +74,6 @@ int main(void) {
     Point const p2(0.1f, 0.0f);
 
     printTest(a2, b2, c2, p2);
-
-    std::cout << std::string(80, '-') << std::endl;
   }
   return 0;
 }

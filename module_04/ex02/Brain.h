@@ -3,20 +3,18 @@
 
 #include <string>
 
-#define IDEAS_N 100
-
 class Brain {
-  std::string ideas[IDEAS_N];
+  std::string ideas[100];
 
- public:
+public:
   Brain();
-  Brain(const Brain& other);
-
-  Brain& operator=(const Brain& other);
-
-  std::string const* getIdeas(void) const;
+  Brain(Brain const& other);
 
   ~Brain();
+
+  Brain& operator=(Brain const& other);
+
+  std::string const* getIdeas() const;
 };
 
 #endif

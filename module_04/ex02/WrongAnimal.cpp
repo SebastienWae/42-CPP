@@ -1,37 +1,28 @@
 #include "WrongAnimal.h"
+
 #include <iostream>
 #include <string>
 
 WrongAnimal::WrongAnimal() : type("WrongAnimal") {
-  log("wrong animal: default constructor");
+  std::cout << "WrongAnimal: default constructor" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal& other) : type(other.type) {
-  log("wrong animal: copy constructor");
+WrongAnimal::WrongAnimal(std::string type) : type(type) {
+  std::cout << "WrongAnimal: default constructor" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(WrongAnimal const& other) : type(other.type) {
+  std::cout << "WrongAnimal: copy constructor" << std::endl;
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other) {
+  std::cout << "WrongAnimal: copy constructor" << std::endl;
   type = other.type;
-  log("wrong animal: copy operator");
   return *this;
 }
 
-WrongAnimal::~WrongAnimal() {
-  log("wrong animal: destructor");
-}
+WrongAnimal::~WrongAnimal() { std::cout << "WrongAnimal: destructor" << std::endl; }
 
-void WrongAnimal::makeSound() const {
-  std::cout << "* wrong animal sound *" << std::endl;
-}
+void WrongAnimal::makeSound() const { std::cout << "* wrong animal sound *" << std::endl; }
 
-void WrongAnimal::setType(std::string new_type) {
-  type = new_type;
-}
-
-std::string WrongAnimal::getType() const {
-  return type;
-}
-
-void WrongAnimal::log(const std::string& msg) {
-  std::cout << msg << std::endl;
-}
+std::string WrongAnimal::getType() const { return type; }

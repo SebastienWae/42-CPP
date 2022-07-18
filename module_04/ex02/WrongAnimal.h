@@ -6,21 +6,18 @@
 class WrongAnimal {
   std::string type;
 
- public:
+public:
   WrongAnimal();
   WrongAnimal(std::string type);
-  WrongAnimal(const WrongAnimal& other);
+  WrongAnimal(WrongAnimal const& other);
 
-  WrongAnimal& operator=(const WrongAnimal& other);
+  WrongAnimal& operator=(WrongAnimal const& other);
 
   virtual ~WrongAnimal();
 
   virtual void makeSound() const;
 
-  void setType(std::string new_type);
   std::string getType() const;
-
-  static void log(const std::string& msg);
 };
 
 #endif

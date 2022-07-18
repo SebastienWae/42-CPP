@@ -2,18 +2,24 @@
 #define CAT_H
 
 #include <string>
+
 #include "Animal.h"
+#include "Brain.h"
 
 class Cat : public Animal {
- public:
-  Cat();
-  Cat(const Cat& other);
+  Brain* brain;
 
-  Cat& operator=(const Cat& other);
+public:
+  Cat();
+  Cat(Cat const& other);
+
+  Cat& operator=(Cat const& other);
 
   ~Cat();
 
   void makeSound() const;
+
+  Brain const* getBrain() const;
 };
 
 #endif

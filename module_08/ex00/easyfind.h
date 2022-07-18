@@ -2,16 +2,20 @@
 #define EASYFIND_H
 
 #include <algorithm>
-#include <exception>
 #include <iostream>
-#include <iterator>
 
-template <class T> void easyfind(T it, int n) {
-  typename T::iterator result = std::find(it.begin(), it.end(), n);
-  if (result != it.end()) {
-    std::cout << "value " << n << " was found" << std::endl;
+class ElementNotFound : public std::exception {
+public:
+  virtual const char* what() const throw() { return "Element not found"; }
+};
+
+template <class T> void easyfind(T container, int n) {
+  typename T::iterator iterator = std::find(container.begin(), container.end(), n);
+  if (iterator != container.end()) {
+    std::cout << "value " << *iterator << " was found" << std::endl;
+    return;
   }
-  throw std::exception();
+  throw ElementNotFound();
 }
 
 #endif

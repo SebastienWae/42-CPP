@@ -6,12 +6,12 @@
 #include <string>
 
 ClapTrap::ClapTrap() : hit_points(10), energy_points(10), attack_damage(0) {
-  Log("ClapTrap", "default constructor");
+  std::cout << "ClapTrap " << name << ": default constructor" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
     : name(name), hit_points(10), energy_points(10), attack_damage(0) {
-  Log("ClapTrap", "name constructor");
+  std::cout << "ClapTrap " << name << ": name constructor" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
@@ -19,23 +19,23 @@ ClapTrap::ClapTrap(const ClapTrap& other)
       hit_points(other.hit_points),
       energy_points(other.energy_points),
       attack_damage(other.attack_damage) {
-  Log("ClapTrap", "copy constructor");
+  std::cout << "ClapTrap " << name << ": copy constructor" << std::endl;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
+  std::cout << "ClapTrap " << name << ": copy operator" << std::endl;
   name = other.name;
   hit_points = other.hit_points;
   energy_points = other.energy_points;
   attack_damage = other.attack_damage;
-  Log("ClapTrap", "copy operator");
   return *this;
 }
 
-ClapTrap::~ClapTrap() { Log("ClapTrap", "destructor"); }
+ClapTrap::~ClapTrap() { std::cout << "ClapTrap " << name << ": destructor" << std::endl; }
 
-std::string ClapTrap::GetName() const { return name; }
+std::string ClapTrap::getName() const { return name; }
 
-unsigned int ClapTrap::ReduceHitPoints(unsigned int n) {
+unsigned int ClapTrap::reduceHitPoints(unsigned int n) {
   if (n >= hit_points) {
     n = hit_points;
   }
@@ -43,7 +43,7 @@ unsigned int ClapTrap::ReduceHitPoints(unsigned int n) {
   return n;
 }
 
-unsigned int ClapTrap::IncreaseHitPoints(unsigned int n) {
+unsigned int ClapTrap::increaseHitPoints(unsigned int n) {
   if (n >= std::numeric_limits<unsigned int>::max() - hit_points) {
     n = std::numeric_limits<unsigned int>::max() - hit_points;
   }
@@ -51,7 +51,7 @@ unsigned int ClapTrap::IncreaseHitPoints(unsigned int n) {
   return n;
 }
 
-unsigned int ClapTrap::ReduceEnergyPoints(unsigned int n) {
+unsigned int ClapTrap::reduceEnergyPoints(unsigned int n) {
   if (n >= energy_points) {
     n = energy_points;
   }
@@ -59,11 +59,7 @@ unsigned int ClapTrap::ReduceEnergyPoints(unsigned int n) {
   return n;
 }
 
-void ClapTrap::Log(const std::string& type, const std::string& msg) {
-  std::cout << type << " '" << name << "': " << msg << std::endl;
-}
-
-void ClapTrap::PrintStatus() const {
+void ClapTrap::printStatus() const {
   std::cout << "### " << name << " STATUS ###" << std::endl;
   std::cout << "hit points: " << hit_points << std::endl;
   std::cout << "energy points: " << energy_points << std::endl;
@@ -71,34 +67,41 @@ void ClapTrap::PrintStatus() const {
   std::cout << "address: " << this << std::endl;
 }
 
-void ClapTrap::Attack(const std::string& target) {
+void ClapTrap::attack(const std::string& target) {
   if (hit_points == 0) {
-    Log("ClapTrap", "cannot attack. No hit points left");
+    std::cout << "ClapTrap " << name << ": Cannot attack. Not hit points left" << std::endl;
   } else if (energy_points == 0) {
-    Log("ClapTrap", "cannot attack. No energy points left");
+    std::cout << "CalpTrap " << name << ": Cannot attack. Not energy points left" << std::endl;
   } else {
-    Log("ClapTrap", "dealt " + SSTR(attack_damage) + " of damage to " + target);
-    ReduceEnergyPoints(1);
+    std::cout << "ClapTrap " << name << ": Attacked " << target << " and delt " << attack_damage
+              << " damages" << std::endl;
+    reduceEnergyPoints(1);
   }
 }
 
-void ClapTrap::TakeDamage(unsigned int amount) {
+void ClapTrap::takeDamage(unsigned int amount) {
   if (hit_points == 0) {
-    Log("ClapTrap", "is out of service");
+    std::cout << "ClapTrap " << name << ": Is already out of service" << std::endl;
   } else {
-    amount = ReduceHitPoints(amount);
-    Log("ClapTrap", "took " + SSTR(amount) + " of damage");
+    amount = reduceHitPoints(amount);
+    std::cout << "ClapTrap " << name << ": Took " << amount << " points of damage" << std::endl;
   }
 }
 
-void ClapTrap::BeRepaired(unsigned int amount) {
+void ClapTrap::beRepaired(unsigned int amount) {
   if (hit_points == 0) {
-    Log("ClapTrap", "cannot be repaired. It's out of service");
+    std::cout << "ClapTrap " << name << ": Cannot be repaired. Already out of service" << std::endl;
   } else if (energy_points == 0) {
-    Log("ClapTrap", "cannot be repaired. Not enough energy points");
+    std::cout << "ClapTrap " << name << ": Cannot be repaired. Not enough energy points"
+              << std::endl;
   } else {
-    amount = IncreaseHitPoints(amount);
-    ReduceEnergyPoints(1);
-    Log("ClapTrap", "was repaired. It gained " + SSTR(amount) + " hit points");
+    amount = increaseHitPoints(amount);
+    if (amount == 0) {
+      std::cout << "ClapTrap " << name << ": Is already fully repaired" << std::endl;
+    } else {
+      std::cout << "ClapTrap " << name << ": Was repaired. It gained " << amount << " hit points"
+                << std::endl;
+    }
+    reduceEnergyPoints(1);
   }
 }

@@ -4,8 +4,6 @@
 #include <sstream>
 #include <string>
 
-#define SSTR(x) static_cast<std::ostringstream&>((std::ostringstream() << std::dec << x)).str()
-
 class ClapTrap {
 protected:
   std::string name;
@@ -20,18 +18,17 @@ public:
 
   ~ClapTrap();
 
-  std::string GetName() const;
+  std::string getName() const;
 
-  unsigned int ReduceHitPoints(unsigned int n);
-  unsigned int IncreaseHitPoints(unsigned int n);
-  unsigned int ReduceEnergyPoints(unsigned int n);
+  unsigned int reduceHitPoints(unsigned int n);
+  unsigned int increaseHitPoints(unsigned int n);
+  unsigned int reduceEnergyPoints(unsigned int n);
 
-  virtual void Log(const std::string& type, const std::string& msg);
-  void PrintStatus() const;
+  void printStatus() const;
 
-  virtual void Attack(const std::string& target);
-  void TakeDamage(unsigned int amount);
-  void BeRepaired(unsigned int amount);
+  virtual void attack(const std::string& target);
+  void takeDamage(unsigned int amount);
+  void beRepaired(unsigned int amount);
 };
 
 #endif

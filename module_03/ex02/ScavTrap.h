@@ -1,23 +1,25 @@
 #ifndef SCAVTRAP_H
 #define SCAVTRAP_H
 
-#include "ClapTrap.h"
-
 #include <string>
 
-class ScavTrap : public ClapTrap {
-  bool gateKeeperMode;
+#include "ClapTrap.h"
 
- public:
+class ScavTrap : virtual public ClapTrap {
+  bool gateKeeperMode_;
+
+public:
   ScavTrap();
   ScavTrap(std::string name);
-  ScavTrap(ScavTrap& other);
+  ScavTrap(const ScavTrap& other);
+
+  ScavTrap& operator=(const ScavTrap& other);
 
   ~ScavTrap();
 
-  void guardGate();
+  virtual void attack(const std::string& target);
 
-  void attack(const std::string& target);
+  void guardGate();
 };
 
 #endif

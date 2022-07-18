@@ -9,44 +9,47 @@ ScavTrap::ScavTrap() {
   hit_points = 100;
   energy_points = 50;
   attack_damage = 20;
-  Log("ScavTrap", "default constructor");
+  std::cout << "ScavTrap " << name << ": default constructor" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name), gateKeeperMode_(false) {
   hit_points = 100;
   energy_points = 50;
   attack_damage = 20;
-  Log("ScavTrap", "name constructor");
+  std::cout << "ScavTrap " << name << ": name constructor" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) { Log("ScavTrap", "copy constructor"); }
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
+  std::cout << "ScavTrap " << name << ": copy constructor" << std::endl;
+}
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
+  std::cout << "ScavTrap " << name << ": copy operator" << std::endl;
   name = other.name;
   hit_points = other.hit_points;
   energy_points = other.energy_points;
   attack_damage = other.attack_damage;
-  Log("ScavTrap", "copy operator");
   return *this;
 }
 
-ScavTrap::~ScavTrap() { Log("ScavTrap", "destructor"); }
+ScavTrap::~ScavTrap() { std::cout << "ScavTrap " << name << ": destructor" << std::endl; }
 
-void ScavTrap::Attack(const std::string& target) {
+void ScavTrap::attack(const std::string& target) {
   if (hit_points == 0) {
-    Log("ScavTrap", "cannot attack. No hit points left");
+    std::cout << "ScavTrap " << name << ": Cannot attack. Not hit points left" << std::endl;
   } else if (energy_points == 0) {
-    Log("ScavTrap", "cannot attack. No energy points left");
+    std::cout << "ScavTrap " << name << ": Cannot attack. Not energy points left" << std::endl;
   } else {
-    Log("ScavTrap", "dealt " + SSTR(attack_damage) + " of damage to " + target);
-    ReduceEnergyPoints(1);
+    std::cout << "ScavTrap " << name << ": Attacked " << target << " and delt " << attack_damage
+              << " damages." << std::endl;
+    reduceEnergyPoints(1);
   }
 }
 
-void ScavTrap::GuardGate() {
+void ScavTrap::guardGate() {
   if (gateKeeperMode_) {
-    Log("ScavTrap", "is already in gate keeper mode");
+    std::cout << "ScavTrap " << name << ": Already in gate keeper mode" << std::endl;
   } else {
-    Log("ScavTrap", "is now in gate keeper mode");
+    std::cout << "ScavTravp " << name << ": Is now in gate keeper mode" << std::endl;
   }
 }

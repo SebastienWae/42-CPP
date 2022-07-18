@@ -6,15 +6,15 @@ int main(void) {
   DiamondTrap dt3("3");
   dt3 = dt;
 
-  dt.WhoAmI();
-  dt2.WhoAmI();
-  dt3.WhoAmI();
+  dt.whoAmI();
+  dt2.whoAmI();
+  dt3.whoAmI();
 
-  dt.Attack("target");
-  dt2.BeRepaired(10);
-  dt3.TakeDamage(10);
+  dt.attack("target");
+  dt2.beRepaired(10);
+  dt3.takeDamage(10);
 
-  dt.PrintStatus();
-  dt2.PrintStatus();
-  dt3.PrintStatus();
+  dt.printStatus();
+  dt2.printStatus();
+  dt3.printStatus();
 }

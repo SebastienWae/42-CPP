@@ -18,10 +18,10 @@ public:
 
   AMateria& operator=(const AMateria& other);
 
-  std::string const& GetType() const;
+  std::string const& getType() const;
 
-  virtual AMateria* Clone() const = 0;
-  virtual void Use(ICharacter& target);
+  virtual AMateria* clone() const = 0;
+  virtual void use(ICharacter& target);
 };
 
 #endif

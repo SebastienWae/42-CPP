@@ -9,24 +9,23 @@
 #define INVENTORY_SIZE 4
 
 class Character : public ICharacter {
-  std::string name_;
-  AMateria* inventory_[INVENTORY_SIZE];
-  std::size_t inventory_cursor_;
+  std::string name;
+  AMateria* inventory[INVENTORY_SIZE];
 
 public:
   Character();
-  Character(const std::string& name);
-  Character(const Character& other);
+  Character(std::string const& name);
+  Character(Character const& other);
 
   ~Character();
 
-  Character& operator=(const Character& other);
+  Character& operator=(Character const& other);
 
-  virtual std::string const& GetName() const;
-  virtual void Equip(AMateria* m);
-  virtual void Unequip(int idx);
-  virtual void Use(int idx, ICharacter& target);
-  virtual AMateria* GetItem(int idx) const;
+  virtual std::string const& getName() const;
+  virtual void equip(AMateria* m);
+  virtual void unequip(int idx);
+  virtual void use(int idx, ICharacter& target);
+  virtual AMateria* getItem(int idx) const;
 };
 
 #endif

@@ -6,8 +6,8 @@
 class IMateriaSource {
 public:
   virtual ~IMateriaSource() {}
-  virtual void LearnMateria(AMateria*) = 0;
-  virtual AMateria* CreateMateria(std::string const& type) = 0;
+  virtual void learnMateria(AMateria*) = 0;
+  virtual AMateria* createMateria(std::string const& type) = 0;
 };
 
 #endif

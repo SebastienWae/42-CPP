@@ -10,11 +10,11 @@ MateriaSource::MateriaSource() {
   }
 }
 
-MateriaSource::MateriaSource(const MateriaSource& other) {
+MateriaSource::MateriaSource(MateriaSource const& other) {
   for (int i = 0; i < MATERIA_SIZE; ++i) {
     AMateria* item = other.learned_[i];
     if (item != NULL) {
-      learned_[i] = item->Clone();
+      learned_[i] = item->clone();
     } else {
       learned_[i] = NULL;
     }
@@ -30,7 +30,7 @@ MateriaSource::~MateriaSource() {
   }
 }
 
-MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
+MateriaSource& MateriaSource::operator=(MateriaSource const& other) {
   if (this == &other) {
     return *this;
   }
@@ -42,7 +42,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
     }
     item = other.learned_[i];
     if (item != NULL) {
-      learned_[i] = item->Clone();
+      learned_[i] = item->clone();
     } else {
       learned_[i] = NULL;
     }
@@ -50,10 +50,10 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other) {
   return *this;
 }
 
-void MateriaSource::LearnMateria(AMateria* materia) {
+void MateriaSource::learnMateria(AMateria* materia) {
   for (int i = 0; i < MATERIA_SIZE; ++i) {
     if (learned_[i] == NULL) {
-      std::cout << "new materia learned: " << materia->GetType() << std::endl;
+      std::cout << "new materia learned: " << materia->getType() << std::endl;
       learned_[i] = materia;
       return;
     }
@@ -61,12 +61,12 @@ void MateriaSource::LearnMateria(AMateria* materia) {
   std::cout << "materia source is full" << std::endl;
 }
 
-AMateria* MateriaSource::CreateMateria(std::string const& type) {
+AMateria* MateriaSource::createMateria(std::string const& type) {
   for (int i = 0; i < MATERIA_SIZE; ++i) {
     AMateria* item = learned_[i];
-    if (item != NULL && item->GetType() == type) {
-      std::cout << "new materia created: " << item->GetType() << std::endl;
-      return item->Clone();
+    if (item != NULL && item->getType() == type) {
+      std::cout << "new materia created: " << item->getType() << std::endl;
+      return item->clone();
     }
   }
   std::cout << type << " is not a known materia" << std::endl;

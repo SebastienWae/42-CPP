@@ -7,91 +7,91 @@
 
 Character::Character() {
   for (int i = 0; i < INVENTORY_SIZE; ++i) {
-    inventory_[i] = NULL;
+    inventory[i] = NULL;
   }
 }
 
-Character::Character(const std::string& name) : name_(name) {
+Character::Character(std::string const& name) : name(name) {
   for (int i = 0; i < INVENTORY_SIZE; ++i) {
-    inventory_[i] = NULL;
+    inventory[i] = NULL;
   }
 }
 
-Character::Character(const Character& other) : name_(other.GetName()) {
+Character::Character(Character const& other) : name(other.name) {
   for (int i = 0; i < INVENTORY_SIZE; ++i) {
-    AMateria* item = other.inventory_[i];
+    AMateria* item = other.inventory[i];
     if (item != NULL) {
-      inventory_[i] = item->Clone();
+      inventory[i] = item->clone();
     } else {
-      inventory_[i] = NULL;
+      inventory[i] = NULL;
     }
   }
 }
 
 Character::~Character() {
   for (int i = 0; i < INVENTORY_SIZE; ++i) {
-    AMateria* item = inventory_[i];
+    AMateria* item = inventory[i];
     if (item != NULL) {
       delete item;
     }
   }
 }
 
-Character& Character::operator=(const Character& other) {
+Character& Character::operator=(Character const& other) {
   if (this == &other) {
     return *this;
   }
 
-  name_ = other.GetName();
+  name = other.name;
   for (int i = 0; i < INVENTORY_SIZE; ++i) {
-    AMateria* item = inventory_[i];
+    AMateria* item = inventory[i];
     if (item != NULL) {
       delete item;
     }
-    item = other.inventory_[i];
+    item = other.inventory[i];
     if (item != NULL) {
-      inventory_[i] = item->Clone();
+      inventory[i] = item->clone();
     } else {
-      inventory_[i] = NULL;
+      inventory[i] = NULL;
     }
   }
   return *this;
 }
 
-std::string const& Character::GetName() const { return name_; }
+std::string const& Character::getName() const { return name; }
 
-void Character::Equip(AMateria* m) {
+void Character::equip(AMateria* m) {
   for (int i = 0; i < INVENTORY_SIZE; ++i) {
-    if (inventory_[i] == NULL) {
-      std::cout << GetName() << " equiped " << m->GetType() << std::endl;
-      inventory_[i] = m;
+    if (inventory[i] == NULL) {
+      std::cout << name << " equiped " << m->getType() << std::endl;
+      inventory[i] = m;
       return;
     }
   }
 }
 
-void Character::Unequip(int idx) {
+void Character::unequip(int idx) {
   if (idx >= 0 && idx < INVENTORY_SIZE) {
-    AMateria* item = inventory_[idx];
+    AMateria* item = inventory[idx];
     if (item != NULL) {
-      std::cout << GetName() << " unequiped " << item->GetType() << std::endl;
-      inventory_[idx] = NULL;
+      std::cout << name << " unequiped " << item->getType() << std::endl;
+      inventory[idx] = NULL;
     }
   }
 }
 
-void Character::Use(int idx, ICharacter& target) {
+void Character::use(int idx, ICharacter& target) {
   if (idx >= 0 && idx < INVENTORY_SIZE) {
-    AMateria* item = inventory_[idx];
+    AMateria* item = inventory[idx];
     if (item != NULL) {
-      item->Use(target);
+      item->use(target);
     }
   }
 }
 
-AMateria* Character::GetItem(int idx) const {
+AMateria* Character::getItem(int idx) const {
   if (idx >= 0 && idx < INVENTORY_SIZE) {
-    return inventory_[idx];
+    return inventory[idx];
   }
   return NULL;
 }

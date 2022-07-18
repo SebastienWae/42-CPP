@@ -6,12 +6,12 @@
 
 Cure::Cure() : AMateria("cure") {}
 
-Cure::Cure(const Cure& other) : AMateria(other) {}
+Cure::Cure(Cure const& other) : AMateria(other) {}
 
 Cure::~Cure() {}
 
-Cure* Cure::Clone() const { return new Cure; }
+Cure* Cure::clone() const { return new Cure; }
 
-void Cure::Use(ICharacter& target) {
-  std::cout << "* heals " << target.GetName() << "’s wounds *" << std::endl;
+void Cure::use(ICharacter& target) {
+  std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

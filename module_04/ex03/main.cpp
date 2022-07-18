@@ -6,19 +6,20 @@
 
 int main() {
   IMateriaSource* src = new MateriaSource();
-  src->LearnMateria(new Ice());
-  src->LearnMateria(new Cure());
-  ICharacter* me = new Character("me");
+  src->learnMateria(new Ice());
+  src->learnMateria(new Cure());
+  ICharacter* me = new Character("steve");
   AMateria* tmp;
-  tmp = src->CreateMateria("ice");
-  me->Equip(tmp);
-  tmp = src->CreateMateria("cure");
-  me->Equip(tmp);
+  tmp = src->createMateria("ice");
+  me->equip(tmp);
+  tmp = src->createMateria("cure");
+  me->equip(tmp);
+  tmp = src->createMateria("test");
   ICharacter* bob = new Character("bob");
-  me->Use(0, *bob);
-  me->Use(1, *bob);
-  tmp = me->GetItem(0);
-  me->Unequip(0);
+  me->use(0, *bob);
+  me->use(1, *bob);
+  tmp = me->getItem(0);
+  me->unequip(0);
   delete tmp;
   delete bob;
   delete me;

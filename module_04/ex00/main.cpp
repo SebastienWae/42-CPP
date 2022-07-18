@@ -61,31 +61,9 @@ int main(void) {
   {
     print_header("WRONG ANIMAL");
 
-    WrongAnimal wrong;
-    WrongAnimal copy(wrong);
-    WrongAnimal assign;
-    assign = copy;
-
-    WrongAnimal* ptr = new WrongAnimal;
-    delete ptr;
-
-    std::cout << "type: " << wrong.getType() << std::endl;
-    std::cout << "sound: ";
-    wrong.makeSound();
-  }
-  {
-    print_header("WRONG CAT");
-
-    WrongCat cow;
-    WrongCat copy(cow);
-    WrongCat assign;
-    assign = copy;
-
-    WrongCat* ptr = new WrongCat;
-    delete ptr;
-
-    std::cout << "type: " << cow.getType() << std::endl;
-    std::cout << "sound: ";
-    cow.makeSound();
+    WrongCat* wg = new WrongCat();
+    wg->makeSound();
+    WrongAnimal* wa = new WrongCat();
+    wa->makeSound();
   }
 }

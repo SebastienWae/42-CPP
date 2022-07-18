@@ -16,9 +16,9 @@ AMateria& AMateria::operator=(const AMateria& other) {
   return *this;
 }
 
-std::string const& AMateria::GetType() const { return type; }
+std::string const& AMateria::getType() const { return type; }
 
-void AMateria::Use(ICharacter& target) {
+void AMateria::use(ICharacter& target) {
   (void)target;
   std::cout << "????" << std::endl;
 }

@@ -19,6 +19,7 @@ Dog& Dog::operator=(const Dog& other) {
   if (&other == this) {
     return *this;
   }
+  type = other.type;
   *brain = *other.brain;
   return *this;
 }

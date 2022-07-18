@@ -10,8 +10,8 @@ Dog::Dog() : Animal("Dog") { std::cout << "Dog: default constructor" << std::end
 Dog::Dog(Dog const& other) : Animal(other) { std::cout << "Dog: copy constructor" << std::endl; }
 
 Dog& Dog::operator=(const Dog& other) {
-  (void)other;
   std::cout << "Dog: copy operator" << std::endl;
+  type = other.type;
   return *this;
 }
 

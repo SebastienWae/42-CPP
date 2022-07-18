@@ -4,6 +4,7 @@
 #include <string>
 
 class Animal {
+protected:
   std::string type;
 
 public:

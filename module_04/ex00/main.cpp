@@ -61,9 +61,13 @@ int main(void) {
   {
     print_header("WRONG ANIMAL");
 
-    WrongCat* wg = new WrongCat();
-    wg->makeSound();
-    WrongAnimal* wa = new WrongCat();
+    const WrongAnimal* wa = new WrongAnimal();
+    const WrongAnimal* wc = new WrongCat();
+
+    std::cout << wa->getType() << " " << std::endl;
+    std::cout << wc->getType() << " " << std::endl;
+
     wa->makeSound();
+    wc->makeSound();
   }
 }

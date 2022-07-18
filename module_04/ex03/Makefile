@@ -2,8 +2,8 @@ NAME = ex03
 
 RM = rm -rf
 
-CC = c++
-CFLAGS = -std=c++98 -g
+CC = clang++
+CFLAGS = -std=c++98 -gdwarf-4
 WARNING = -Wall -Wextra -Werror
 
 SRCS = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp

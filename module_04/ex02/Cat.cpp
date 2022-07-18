@@ -19,6 +19,7 @@ Cat& Cat::operator=(Cat const& other) {
   if (&other == this) {
     return *this;
   }
+  type = other.type;
   *brain = *other.brain;
   return *this;
 }

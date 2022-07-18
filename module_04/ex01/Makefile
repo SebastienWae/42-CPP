@@ -2,7 +2,7 @@ NAME = ex01
 
 RM = rm -rf
 
-CC = c++
+CC = clang++
 CFLAGS = -std=c++98 -g
 WARNING = -Wall -Wextra -Werror
 

@@ -10,8 +10,8 @@ Cat::Cat() : Animal("Cat") { std::cout << "Cat: default constructor" << std::end
 Cat::Cat(const Cat& other) : Animal(other) { std::cout << "Cat: copy constructor" << std::endl; }
 
 Cat& Cat::operator=(Cat const& other) {
-  (void)other;
   std::cout << "Cat: copy operator" << std::endl;
+  type = other.type;
   return *this;
 }
 

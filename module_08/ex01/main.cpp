@@ -91,7 +91,7 @@ int main() {
   }
   {
     std::cout << "### TEST 7 ###" << std::endl;
-    unsigned int const N = 1000000;
+    unsigned int const N = 200000;
     std::cout << "Test with " << N << " random numbers:" << std::endl;
     std::vector<int> vec(N);
     std::generate(vec.begin(), vec.end(), rand);

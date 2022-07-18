@@ -2,24 +2,23 @@
 
 #include <iostream>
 #include <string>
+#include "ClapTrap.h" 
 
-#include "ClapTrap.h"
-
-ScavTrap::ScavTrap() {
+ScavTrap::ScavTrap(): gateKeeperMode(false) {
   hit_points = 100;
   energy_points = 50;
   attack_damage = 20;
   std::cout << "ScavTrap " << name << ": default constructor" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name), gateKeeperMode_(false) {
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name), gateKeeperMode(false) {
   hit_points = 100;
   energy_points = 50;
   attack_damage = 20;
   std::cout << "ScavTrap " << name << ": name constructor" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
+ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other), gateKeeperMode(false) {
   std::cout << "ScavTrap " << name << ": copy constructor" << std::endl;
 }
 
@@ -29,6 +28,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other) {
   hit_points = other.hit_points;
   energy_points = other.energy_points;
   attack_damage = other.attack_damage;
+  gateKeeperMode = other.gateKeeperMode;
   return *this;
 }
 
@@ -47,9 +47,10 @@ void ScavTrap::attack(const std::string& target) {
 }
 
 void ScavTrap::guardGate() {
-  if (gateKeeperMode_) {
+  if (gateKeeperMode) {
     std::cout << "ScavTrap " << name << ": Already in gate keeper mode" << std::endl;
   } else {
     std::cout << "ScavTravp " << name << ": Is now in gate keeper mode" << std::endl;
+	gateKeeperMode = true;
   }
 }

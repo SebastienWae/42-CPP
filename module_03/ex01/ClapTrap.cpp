@@ -1,7 +1,6 @@
 #include "ClapTrap.h"
 
 #include <iostream>
-#include <iterator>
 #include <limits>
 #include <string>
 

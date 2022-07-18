@@ -6,7 +6,7 @@
 #include "ClapTrap.h"
 
 class ScavTrap : virtual public ClapTrap {
-  bool gateKeeperMode_;
+  bool gateKeeperMode;
 
 public:
   ScavTrap();

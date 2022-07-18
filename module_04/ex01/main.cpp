@@ -1,15 +1,14 @@
 #include <iostream>
 #include <new>
 #include <string>
+
 #include "Animal.h"
-#include "Brain.h"
 #include "Cat.h"
 #include "Dog.h"
 
 void print_header(const std::string& title) {
   std::cout << std::endl;
-  std::cout << std::string(5, '#') << " " << title << " " << std::string(5, '#')
-            << std::endl;
+  std::cout << std::string(5, '#') << " " << title << " " << std::string(5, '#') << std::endl;
 }
 
 int main(void) {
@@ -40,35 +39,51 @@ int main(void) {
     }
   }
   {
+    print_header("DEEP COPY");
+    Dog basic;
+    { Dog tmp = basic; }
+    basic.makeSound();
+  }
+  {
     print_header("COPY CONSTRUCTOR");
 
-    Animal* a = new Animal();
-    Animal* b = new Animal(*a);
+    Cat a;
+    Cat b(a);
 
-    std::string const* a_ideas = a->getBrain()->getIdeas();
-    std::string const* b_ideas = b->getBrain()->getIdeas();
+    Brain const* a_brain = a.getBrain();
+    Brain const* b_brain = b.getBrain();
 
-    for (int i = 0; i < IDEAS_N; ++i) {
+    std::cout << a_brain << std::endl;
+    std::cout << b_brain << std::endl;
+
+    std::string const* a_ideas = a_brain->getIdeas();
+    std::string const* b_ideas = b_brain->getIdeas();
+
+    for (int i = 0; i < 100; ++i) {
       if (a_ideas[i] != b_ideas[i] || &a_ideas[i] == &b_ideas[i]) {
         std::cout << &a_ideas[i] << std::endl;
         std::cout << &b_ideas[i] << std::endl;
         std::cout << "error: not a deep copy" << std::endl;
       }
     }
-    delete a;
-    delete b;
   }
   {
     print_header("COPY OPERATOR");
 
-    Animal a;
-    Animal b;
+    Dog a;
+    Dog b;
     b = a;
 
-    std::string const* a_ideas = a.getBrain()->getIdeas();
-    std::string const* b_ideas = b.getBrain()->getIdeas();
+    Brain const* a_brain = a.getBrain();
+    Brain const* b_brain = b.getBrain();
 
-    for (int i = 0; i < IDEAS_N; ++i) {
+    std::cout << a_brain << std::endl;
+    std::cout << b_brain << std::endl;
+
+    std::string const* a_ideas = a_brain->getIdeas();
+    std::string const* b_ideas = b_brain->getIdeas();
+
+    for (int i = 0; i < 100; ++i) {
       if (a_ideas[i] != b_ideas[i] || &a_ideas[i] == &b_ideas[i]) {
         std::cout << &a_ideas[i] << std::endl;
         std::cout << &b_ideas[i] << std::endl;

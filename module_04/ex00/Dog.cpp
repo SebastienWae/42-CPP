@@ -1,26 +1,20 @@
 #include "Dog.h"
+
 #include <iostream>
 #include <string>
 
-Dog::Dog() {
-  setType("Dog");
-  log("dog: default constructor");
-}
+#include "Animal.h"
 
-Dog::Dog(const Dog& other) : Animal(other) {
-  log("dog: copy constructor");
-}
+Dog::Dog() : Animal("Dog") { std::cout << "Dog: default constructor" << std::endl; }
+
+Dog::Dog(Dog const& other) : Animal(other) { std::cout << "Dog: copy constructor" << std::endl; }
 
 Dog& Dog::operator=(const Dog& other) {
-  setType(other.getType());
-  log("dog: copy operator");
+  (void)other;
+  std::cout << "Dog: copy operator" << std::endl;
   return *this;
 }
 
-Dog::~Dog() {
-  log("dog: destructor");
-}
+Dog::~Dog() { std::cout << "Dog: destructor" << std::endl; }
 
-void Dog::makeSound() const {
-  std::cout << "woof" << std::endl;
-}
+void Dog::makeSound() const { std::cout << "* woof *" << std::endl; }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 #include "Animal.h"
 #include "Cat.h"
 #include "Dog.h"
@@ -8,8 +9,7 @@
 
 void print_header(const std::string& title) {
   std::cout << std::endl;
-  std::cout << std::string(5, '#') << " " << title << " " << std::string(5, '#')
-            << std::endl;
+  std::cout << std::string(5, '#') << " " << title << " " << std::string(5, '#') << std::endl;
 }
 
 int main(void) {

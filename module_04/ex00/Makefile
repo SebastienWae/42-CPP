@@ -1,4 +1,4 @@
-NAME = polymorphism
+NAME = ex00
 
 RM = rm -rf
 

@@ -1,26 +1,20 @@
 #include "Cat.h"
+
 #include <iostream>
 #include <string>
 
-Cat::Cat() {
-  setType("Cat");
-  log("cat: default constructor");
-}
+#include "Animal.h"
 
-Cat::Cat(const Cat& other) : Animal(other) {
-  log("cat: copy constructor");
-}
+Cat::Cat() : Animal("Cat") { std::cout << "Cat: default constructor" << std::endl; }
 
-Cat& Cat::operator=(const Cat& other) {
-  setType(other.getType());
-  log("cat: copy operator");
+Cat::Cat(const Cat& other) : Animal(other) { std::cout << "Cat: copy constructor" << std::endl; }
+
+Cat& Cat::operator=(Cat const& other) {
+  (void)other;
+  std::cout << "Cat: copy operator" << std::endl;
   return *this;
 }
 
-Cat::~Cat() {
-  log("cat :destructor");
-}
+Cat::~Cat() { std::cout << "Cat: destructor" << std::endl; }
 
-void Cat::makeSound() const {
-  std::cout << "meow" << std::endl;
-}
+void Cat::makeSound() const { std::cout << "* meow *" << std::endl; }

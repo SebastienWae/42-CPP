@@ -2,14 +2,15 @@
 #define CAT_H
 
 #include <string>
+
 #include "Animal.h"
 
 class Cat : public Animal {
- public:
+public:
   Cat();
-  Cat(const Cat& other);
+  Cat(Cat const& other);
 
-  Cat& operator=(const Cat& other);
+  Cat& operator=(Cat const& other);
 
   ~Cat();
 

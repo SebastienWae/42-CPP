@@ -1,26 +1,24 @@
 #include "WrongCat.h"
+
 #include <iostream>
 #include <string>
 
-WrongCat::WrongCat() {
-  setType("WrongCat");
-  log("wrong cat: default constructor");
+#include "WrongAnimal.h"
+
+WrongCat::WrongCat() : WrongAnimal("WrongCat") {
+  std::cout << "WrongCat: default constructor" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat& other) : Animal(other) {
-  log("wrong cat: copy constructor");
+WrongCat::WrongCat(WrongCat const& other) : WrongAnimal(other) {
+  std::cout << "WrongCat: copy constructor" << std::endl;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat& other) {
-  setType(other.getType());
-  log("wrong cat: copy operator");
+  (void)other;
+  std::cout << "WrongCat: copy operator" << std::endl;
   return *this;
 }
 
-WrongCat::~WrongCat() {
-  log("wrong cat: destructor");
-}
+WrongCat::~WrongCat() { std::cout << "WrongCat: destructor" << std::endl; }
 
-void WrongCat::makeSound() const {
-  std::cout << "mooooo" << std::endl;
-}
+void WrongCat::makeSound() const { std::cout << "* mooooo *" << std::endl; }

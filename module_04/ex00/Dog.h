@@ -2,14 +2,15 @@
 #define DOG_H
 
 #include <string>
+
 #include "Animal.h"
 
 class Dog : public Animal {
- public:
+public:
   Dog();
-  Dog(const Dog& other);
+  Dog(Dog const& other);
 
-  Dog& operator=(const Dog& other);
+  Dog& operator=(Dog const& other);
 
   ~Dog();
 

@@ -13,13 +13,14 @@ public:
   RobotomyRequestForm();
   RobotomyRequestForm(std::string target);
 
-  RobotomyRequestForm(const RobotomyRequestForm& other);
+  RobotomyRequestForm(RobotomyRequestForm const& other);
 
-  RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
+  RobotomyRequestForm& operator=(RobotomyRequestForm const& other);
 
   ~RobotomyRequestForm();
 
-  virtual bool execute(Bureaucrat const& executor) const;
+  virtual void execute(Bureaucrat const& executor) const
+      throw(GradeTooLowException, FormNotSignedException);
 };
 
 #endif

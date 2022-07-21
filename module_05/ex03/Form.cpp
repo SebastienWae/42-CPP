@@ -1,3 +1,4 @@
+
 #include "Form.h"
 
 #include <iostream>
@@ -23,17 +24,20 @@ Form::Form(const Form& other)
       grade_req_sign(other.grade_req_sign),
       grade_req_exec(other.grade_req_exec) {}
 
+Form& Form::operator=(Form const& other) {
+  is_signed = other.is_signed;
+  return *this;
+}
+
 Form::~Form() {}
 
-std::string Form::getName() const { return name.empty() ? "<no-name>" : name; }
+std::string Form::getName() const { return name.empty() ? "<no-name form>" : name; }
 
 bool Form::getIsSigned() const { return is_signed; }
 
 int Form::getGradeReqSign() const { return grade_req_sign; }
 
-int Form::getGradeReqExec() const { return grade_req_sign; }
-
-void Form::setSigned(bool b) { is_signed = b; }
+int Form::getGradeReqExec() const { return grade_req_exec; }
 
 bool Form::beSigned(Bureaucrat* bureaucrat) throw(Form::GradeTooLowException) {
   if (bureaucrat->getGrade() > grade_req_sign) {
@@ -46,9 +50,21 @@ bool Form::beSigned(Bureaucrat* bureaucrat) throw(Form::GradeTooLowException) {
   return true;
 }
 
-char const* Form::GradeTooHighException::what() const throw() { return exception::what(); }
+void Form::execute(Bureaucrat const& executor) const
+    throw(GradeTooLowException, FormNotSignedException) {
+  if (!getIsSigned()) {
+    throw FormNotSignedException();
+  }
+  if (executor.getGrade() > getGradeReqExec()) {
+    throw GradeTooLowException();
+  }
+}
 
-char const* Form::GradeTooLowException::what() const throw() { return exception::what(); }
+char const* Form::GradeTooHighException::what() const throw() { return "Grade is too high."; }
+
+char const* Form::GradeTooLowException::what() const throw() { return "Grade is too low."; }
+
+char const* Form::FormNotSignedException::what() const throw() { return "Form is not signed."; }
 
 std::ostream& operator<<(std::ostream& os, Form& f) {
   os << "form: " << f.getName() << (f.getIsSigned() ? " is " : " is not ")

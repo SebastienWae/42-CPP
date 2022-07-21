@@ -25,9 +25,9 @@ public:
   Form();
   Form(std::string name, int grade_req_sign, int grade_req_exec) throw(GradeTooHighException,
                                                                        GradeTooLowException);
-  Form(const Form& other);
+  Form(Form const& other);
 
-  Form& operator=(const Form& other);
+  Form& operator=(Form const& other);
 
   ~Form();
 

@@ -5,33 +5,30 @@
 
 #include "Form.h"
 
-RobotomyRequestForm::RobotomyRequestForm() : Form("robotomy", ROBOTOMY_SIGN, ROBOTOMY_EXEC) {}
+RobotomyRequestForm::RobotomyRequestForm()
+    : Form("Robotomy Request", ROBOTOMY_SIGN, ROBOTOMY_EXEC) {}
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target)
-    : Form("robotomy", ROBOTOMY_EXEC, ROBOTOMY_EXEC), target(target) {}
+    : Form("Robotomy Request", ROBOTOMY_EXEC, ROBOTOMY_EXEC), target(target) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
+RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const& other)
     : Form(other), target(other.target) {}
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other) {
-  setSigned(other.getIsSigned());
+RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm const& other) {
+  Form::operator=(other);
   return *this;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
-bool RobotomyRequestForm::execute(Bureaucrat const& executor) const {
-  if (!getIsSigned()) {
-    return false;
-  }
-  if (executor.getGrade() > getGradeReqExec()) {
-    throw GradeTooLowException();
-  }
+void RobotomyRequestForm::execute(Bureaucrat const& executor) const
+    throw(GradeTooLowException, FormNotSignedException) {
+  Form::execute(executor);
   std::cout << "* drilling noises *" << std::endl;
+  srand(time(NULL));
   if ((std::rand() % 2) != 0) {
     std::cout << target << " has been robotomized" << std::endl;
   } else {
     std::cout << "robotomy has failed!" << std::endl;
   }
-  return true;
 }

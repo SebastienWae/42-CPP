@@ -13,13 +13,14 @@ public:
   ShrubberyCreationForm();
   ShrubberyCreationForm(std::string target);
 
-  ShrubberyCreationForm(const ShrubberyCreationForm& other);
+  ShrubberyCreationForm(ShrubberyCreationForm const& other);
 
-  ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+  ShrubberyCreationForm& operator=(ShrubberyCreationForm const& other);
 
   ~ShrubberyCreationForm();
 
-  virtual bool execute(Bureaucrat const& executor) const;
+  virtual void execute(Bureaucrat const& executor) const
+      throw(GradeTooLowException, FormNotSignedException);
 };
 
 #endif

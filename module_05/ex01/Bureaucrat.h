@@ -1,6 +1,7 @@
 #ifndef BUREAUCRAT_H
 #define BUREAUCRAT_H
 
+#include <ostream>
 #include <string>
 
 #define MIN_GRADE 150
@@ -9,7 +10,7 @@
 class Form;
 
 class Bureaucrat {
-  std::string name;
+  std::string const name;
   int grade;
 
 public:
@@ -25,9 +26,9 @@ public:
 
   Bureaucrat();
   Bureaucrat(std::string name, int grade) throw(GradeTooHighException, GradeTooLowException);
-  Bureaucrat(const Bureaucrat& other);
+  Bureaucrat(Bureaucrat const& other);
 
-  Bureaucrat& operator=(const Bureaucrat& other);
+  Bureaucrat& operator=(Bureaucrat const& other);
 
   ~Bureaucrat();
 

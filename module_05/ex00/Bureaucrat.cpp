@@ -19,7 +19,6 @@ Bureaucrat::Bureaucrat(std::string name, int grade) throw(Bureaucrat::GradeTooHi
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade) {}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
-  name = other.name;
   grade = other.grade;
   return *this;
 }
@@ -44,9 +43,9 @@ void Bureaucrat::decrementGrade() throw(Bureaucrat::GradeTooLowException) {
   grade++;
 }
 
-char const* Bureaucrat::GradeTooHighException::what() const throw() { return exception::what(); }
+char const* Bureaucrat::GradeTooHighException::what() const throw() { return "Grade is too high."; }
 
-char const* Bureaucrat::GradeTooLowException::what() const throw() { return exception::what(); }
+char const* Bureaucrat::GradeTooLowException::what() const throw() { return "Grade is too low."; }
 
 std::ostream& operator<<(std::ostream& os, Bureaucrat const& b) {
   std::string const displayName = (b.getName().empty()) ? "<no-name>" : b.getName();

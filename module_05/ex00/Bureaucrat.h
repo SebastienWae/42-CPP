@@ -8,7 +8,7 @@
 #define MAX_GRADE 1
 
 class Bureaucrat {
-  std::string name;
+  std::string const name;
   int grade;
 
 public:
@@ -24,9 +24,9 @@ public:
 
   Bureaucrat();
   Bureaucrat(std::string name, int grade) throw(GradeTooHighException, GradeTooLowException);
-  Bureaucrat(const Bureaucrat& other);
+  Bureaucrat(Bureaucrat const& other);
 
-  Bureaucrat& operator=(const Bureaucrat& other);
+  Bureaucrat& operator=(Bureaucrat const& other);
 
   ~Bureaucrat();
 

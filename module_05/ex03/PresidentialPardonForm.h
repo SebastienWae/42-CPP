@@ -13,13 +13,14 @@ public:
   PresidentialPardonForm();
   PresidentialPardonForm(std::string target);
 
-  PresidentialPardonForm(const PresidentialPardonForm& other);
+  PresidentialPardonForm(PresidentialPardonForm const& other);
 
-  PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
+  PresidentialPardonForm& operator=(PresidentialPardonForm const& other);
 
   ~PresidentialPardonForm();
 
-  virtual bool execute(Bureaucrat const& executor) const;
+  virtual void execute(Bureaucrat const& executor) const
+      throw(GradeTooLowException, FormNotSignedException);
 };
 
 #endif

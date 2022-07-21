@@ -6,28 +6,24 @@
 #include "Form.h"
 
 ShrubberyCreationForm::ShrubberyCreationForm()
-    : Form("shrubbery", SHRUBBERY_SIGN, SHRUBBERY_EXEC) {}
+    : Form("Shrubbery Creation", SHRUBBERY_SIGN, SHRUBBERY_EXEC) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
-    : Form("shrubbery", SHRUBBERY_SIGN, SHRUBBERY_EXEC), target(target) {}
+    : Form("Shrubbery Creation", SHRUBBERY_SIGN, SHRUBBERY_EXEC), target(target) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const& other)
     : Form(other), target(other.target) {}
 
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
-  setSigned(other.getIsSigned());
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm const& other) {
+  Form::operator=(other);
   return *this;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-bool ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
-  if (!getIsSigned()) {
-    return false;
-  }
-  if (executor.getGrade() > getGradeReqExec()) {
-    throw GradeTooLowException();
-  }
+void ShrubberyCreationForm::execute(Bureaucrat const& executor) const
+    throw(GradeTooLowException, FormNotSignedException) {
+  Form::execute(executor);
   std::ofstream target_file((target + "_shrubbery").c_str());
   if (target_file.is_open()) {
     target_file << "            ,@@@@@@@," << std::endl;
@@ -45,5 +41,4 @@ bool ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
     std::cout << "Unable to open file" << std::endl;
   }
   target_file.close();
-  return true;
 }

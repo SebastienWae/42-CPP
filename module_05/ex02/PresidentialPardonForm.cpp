@@ -5,28 +5,23 @@
 #include "Form.h"
 
 PresidentialPardonForm::PresidentialPardonForm()
-    : Form("presidential", PRESIDENTIAL_SIGN, PRESIDENTIAL_EXEC) {}
+    : Form("Presidential Pardon", PRESIDENTIAL_SIGN, PRESIDENTIAL_EXEC) {}
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-    : Form("presidential", PRESIDENTIAL_SIGN, PRESIDENTIAL_EXEC), target(target) {}
+    : Form("Presidential Pardon", PRESIDENTIAL_SIGN, PRESIDENTIAL_EXEC), target(target) {}
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const& other)
     : Form(other), target(other.target) {}
 
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
-  setSigned(other.getIsSigned());
+PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm const& other) {
+  Form::operator=(other);
   return *this;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
-bool PresidentialPardonForm::execute(Bureaucrat const& executor) const {
-  if (!getIsSigned()) {
-    return false;
-  }
-  if (executor.getGrade() > getGradeReqExec()) {
-    throw GradeTooLowException();
-  }
-  std::cout << target << "has been pardoned by Zaphod Beeblebrox" << std::endl;
-  return true;
+void PresidentialPardonForm::execute(Bureaucrat const& executor) const
+    throw(GradeTooLowException, FormNotSignedException) {
+  Form::execute(executor);
+  std::cout << target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

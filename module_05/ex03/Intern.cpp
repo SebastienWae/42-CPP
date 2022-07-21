@@ -8,6 +8,12 @@
 #include "RobotomyRequestForm.h"
 #include "ShrubberyCreationForm.h"
 
+Intern::FormCustructor Intern::formConstructors[3]
+    = {Intern::create<PresidentialPardonForm>, Intern::create<RobotomyRequestForm>,
+       Intern::create<ShrubberyCreationForm>};
+std::string Intern::formTypes[3]
+    = {"presidential pardon", "robotomy request", "shrubbery creation"};
+
 Intern::Intern() {}
 
 Intern::Intern(const Intern& other) { (void)other; }
@@ -20,22 +26,16 @@ Intern& Intern::operator=(const Intern& other) {
 Intern::~Intern() {}
 
 Form* Intern::makeForm(std::string form, std::string target) const {
-  std::string typesForm[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-  int num_type = 0;
-
-  while (form != typesForm[num_type] && num_type < 3) {
-    num_type++;
+  Form* new_form = NULL;
+  for (int i = 0; i < 3; ++i) {
+    if (formTypes[i] == form) {
+      new_form = formConstructors[i](target);
+    }
   }
-
-  switch (num_type) {
-    case 0:
-      return (new ShrubberyCreationForm(target));
-    case 1:
-      return (new RobotomyRequestForm(target));
-    case 2:
-      return (new PresidentialPardonForm(target));
-    default:
-      std::cout << "This type of form does not exist." << std::endl;
-      return NULL;
+  if (new_form != 0) {
+    std::cout << "The intern created a new '" << form << "' form" << std::endl;
+    return new_form;
   }
+  std::cout << "This type of form does not exist" << std::endl;
+  return NULL;
 }

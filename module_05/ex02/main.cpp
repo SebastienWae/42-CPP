@@ -9,42 +9,53 @@
 int main(void) {
   {
     std::cout << "## TEST 1 ##" << std::endl;
-    try {
-      PresidentialPardonForm f("t1");
-      Bureaucrat b("steve", 150);
-      f.setSigned(true);
-      b.executeForm(f);
-    } catch (std::exception &e) {
-      std::cout << e.what() << std::endl;
-    }
+    PresidentialPardonForm f("target");
+    Bureaucrat a("a", MAX_GRADE);
+    Bureaucrat b("b", MIN_GRADE);
+
+    std::cout << f << std::endl;
+    std::cout << a << std::endl;
+    std::cout << b << std::endl;
+
+    a.signForm(f);
+
+    std::cout << f << std::endl;
+
+    b.executeForm(f);
   }
   {
     std::cout << "## TEST 2 ##" << std::endl;
-    try {
-      PresidentialPardonForm f("t1");
-      Bureaucrat b("steve", 1);
-      b.executeForm(f);
-    } catch (std::exception &e) {
-      std::cout << e.what() << std::endl;
-    }
+    ShrubberyCreationForm f("target");
+
+    Bureaucrat a("a", MAX_GRADE);
+
+    std::cout << f << std::endl;
+    std::cout << a << std::endl;
+
+    a.executeForm(f);
   }
   {
     std::cout << "## TEST 3 ##" << std::endl;
-    try {
-      RobotomyRequestForm r("r1");
-      PresidentialPardonForm f("t1");
-      ShrubberyCreationForm s("s1");
-      Bureaucrat b("steve", 1);
+    RobotomyRequestForm r("target");
+    PresidentialPardonForm p("target");
+    ShrubberyCreationForm s("ddd");
+    Bureaucrat a("a", MAX_GRADE);
 
-      b.signForm(r);
-      b.signForm(f);
-      b.signForm(s);
+    std::cout << r << std::endl;
+    std::cout << p << std::endl;
+    std::cout << s << std::endl;
+    std::cout << a << std::endl;
 
-      b.executeForm(r);
-      b.executeForm(f);
-      b.executeForm(s);
-    } catch (std::exception &e) {
-      std::cout << e.what() << std::endl;
-    }
+    a.signForm(r);
+    a.signForm(p);
+    a.signForm(s);
+
+    std::cout << r << std::endl;
+    std::cout << p << std::endl;
+    std::cout << s << std::endl;
+
+    a.executeForm(r);
+    a.executeForm(p);
+    a.executeForm(s);
   }
 }

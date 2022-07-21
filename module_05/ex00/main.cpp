@@ -6,7 +6,7 @@ int main(void) {
   {
     try {
       std::cout << "## TEST 1" << std::endl;
-      Bureaucrat a = Bureaucrat("a", 1);
+      Bureaucrat a = Bureaucrat("a", MAX_GRADE);
 
       std::cout << a << std::endl;
       a.decrementGrade();
@@ -21,7 +21,7 @@ int main(void) {
   {
     try {
       std::cout << "## TEST 2" << std::endl;
-      Bureaucrat a = Bureaucrat("a", 150);
+      Bureaucrat a = Bureaucrat("a", MIN_GRADE);
 
       std::cout << a << std::endl;
       a.incrementGrade();
@@ -36,7 +36,7 @@ int main(void) {
   {
     try {
       std::cout << "## TEST 3" << std::endl;
-      Bureaucrat a = Bureaucrat("a", 0);
+      Bureaucrat a = Bureaucrat("a", MAX_GRADE - 1);
     } catch (std::exception &e) {
       std::cout << e.what() << std::endl;
     }
@@ -44,7 +44,7 @@ int main(void) {
   {
     try {
       std::cout << "## TEST 4" << std::endl;
-      Bureaucrat a = Bureaucrat("a", 151);
+      Bureaucrat a = Bureaucrat("a", MIN_GRADE + 1);
     } catch (std::exception &e) {
       std::cout << e.what() << std::endl;
     }

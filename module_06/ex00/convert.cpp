@@ -1,6 +1,7 @@
 #include "convert.h"
 
 #include <cctype>
+#include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <limits>
@@ -132,7 +133,7 @@ void convert(char c) {
   std::cout << "int: " << i << std::endl;
 
   float f = static_cast<float>(c);
-  std::cout << "float: " << f << std::endl;
+  std::cout << "float: " << f << "f" << std::endl;
 
   double d = static_cast<double>(c);
   std::cout << "double: " << d << std::endl;
@@ -151,7 +152,7 @@ void convert(int i) {
   std::cout << "int: " << i << std::endl;
 
   float f = static_cast<float>(i);
-  std::cout << "float: " << f << std::endl;
+  std::cout << "float: " << f << "f" << std::endl;
 
   double d = static_cast<double>(i);
   std::cout << "double: " << d << std::endl;
@@ -159,9 +160,11 @@ void convert(int i) {
 
 void convert(float f) {
   float intpart;
-  float dec = modf(f, &intpart);
+  float dec = std::modf(f, &intpart);
 
-  if (dec == 0 && intpart >= 32 && intpart <= 126) {
+  if (std::isnan(f) == 1 || std::isinf(f) == 1) {
+    std::cout << "char: Impossible" << std::endl;
+  } else if (dec == 0 && intpart >= 32 && intpart <= 126) {
     char c = static_cast<char>(intpart);
     std::cout << "char: " << c << std::endl;
   } else if (intpart > std::numeric_limits<char>::max()
@@ -171,17 +174,19 @@ void convert(float f) {
     std::cout << "char: Non displayable" << std::endl;
   }
 
-  if (intpart > std::numeric_limits<int>::max()
-      || (dec > 0. && intpart == std::numeric_limits<int>::max())
-      || intpart < std::numeric_limits<int>::min()
-      || (dec < 0. && intpart == std::numeric_limits<int>::min())) {
+  if (std::isnan(f) == 1 || std::isinf(f) == 1) {
+    std::cout << "int: Impossible" << std::endl;
+  } else if (static_cast<int>(intpart) > std::numeric_limits<int>::max()
+             || (dec > 0. && static_cast<int>(intpart) == std::numeric_limits<int>::max())
+             || static_cast<int>(intpart) < std::numeric_limits<int>::min()
+             || (dec < 0. && static_cast<int>(intpart) == std::numeric_limits<int>::min())) {
     std::cout << "int: Overlfow" << std::endl;
   } else {
     int i = static_cast<int>(intpart);
     std::cout << "int: " << i << std::endl;
   }
 
-  std::cout << "float: " << f << std::endl;
+  std::cout << "float: " << f << "f" << std::endl;
 
   double d = static_cast<double>(f);
   std::cout << "double: " << d << std::endl;
@@ -189,9 +194,11 @@ void convert(float f) {
 
 void convert(double d) {
   double intpart;
-  double dec = modf(d, &intpart);
+  double dec = std::modf(d, &intpart);
 
-  if (dec == 0 && intpart >= 32 && intpart <= 126) {
+  if (std::isnan(d) == 1 || std::isinf(d) == 1) {
+    std::cout << "char: Impossible" << std::endl;
+  } else if (dec == 0 && intpart >= 32 && intpart <= 126) {
     char c = static_cast<char>(intpart);
     std::cout << "char: " << c << std::endl;
   } else if (intpart > std::numeric_limits<char>::max()
@@ -201,21 +208,25 @@ void convert(double d) {
     std::cout << "char: Non displayable" << std::endl;
   }
 
-  if (intpart > std::numeric_limits<int>::max()
-      || (dec > 0. && intpart == std::numeric_limits<int>::max())
-      || intpart < std::numeric_limits<int>::min()
-      || (dec < 0. && intpart == std::numeric_limits<int>::min())) {
+  if (std::isnan(d) == 1 || std::isinf(d) == 1) {
+    std::cout << "int: Impossible" << std::endl;
+  } else if (intpart > std::numeric_limits<int>::max()
+             || (dec > 0. && intpart == std::numeric_limits<int>::max())
+             || intpart < std::numeric_limits<int>::min()
+             || (dec < 0. && intpart == std::numeric_limits<int>::min())) {
     std::cout << "int: Overlfow" << std::endl;
   } else {
     int i = static_cast<int>(intpart);
     std::cout << "int: " << i << std::endl;
   }
 
-  if (d > std::numeric_limits<float>::max() || d < -std::numeric_limits<float>::max()) {
+  if (std::isinf(d) == 1) {
+    std::cout << "float: Impossible" << std::endl;
+  } else if (d > std::numeric_limits<float>::max() || d < -std::numeric_limits<float>::max()) {
     std::cout << "float: Overlfow" << std::endl;
   } else {
     float f = static_cast<float>(d);
-    std::cout << "float: " << f << std::endl;
+    std::cout << "float: " << f << "f" << std::endl;
   }
 
   std::cout << "double: " << d << std::endl;

@@ -1,10 +1,10 @@
-#include <cstdint>
+#include <stdint.h>
+
 #include <iostream>
-#include <system_error>
 
 #include "Data.h"
 
-uintptr_t serialize(Data* ptr) { return reinterpret_cast<std::uintptr_t>(ptr); }
+uintptr_t serialize(Data* ptr) { return reinterpret_cast<uintptr_t>(ptr); }
 
 Data* deserialize(uintptr_t raw) { return reinterpret_cast<Data*>(raw); }
 

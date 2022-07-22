@@ -3,7 +3,7 @@ NAME = ex00
 RM = rm -rf
 
 CC = c++
-CFLAGS = -std=c++98 -g
+CFLAGS = -std=c++98 -g -lm
 WARNING = -Wall -Wextra -Werror
 
 SRCS = convert.cpp

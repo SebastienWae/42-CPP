@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <exception>
 #include <iostream>
 
 #include "A.h"
@@ -35,17 +36,17 @@ void identify(Base& p) {
   try {
     (void)dynamic_cast<A&>(p);
     std::cout << "A class" << std::endl;
-  } catch (std::bad_cast) {
+  } catch (std::exception& e) {
   }
   try {
     (void)dynamic_cast<B&>(p);
     std::cout << "B class" << std::endl;
-  } catch (std::bad_cast) {
+  } catch (std::exception& e) {
   }
   try {
     (void)dynamic_cast<C&>(p);
     std::cout << "C class" << std::endl;
-  } catch (std::bad_cast) {
+  } catch (std::exception& e) {
   }
 }
 

@@ -39,14 +39,14 @@ public:
 
   T& operator[](std::size_t index) throw(std::exception) {
     if (index >= len) {
-      throw std::out_of_range("out of range");
+      throw std::exception();
     }
     return elements[index];
   }
 
   T const& operator[](std::size_t index) const throw(std::exception) {
     if (index >= len) {
-      throw std::out_of_range("out of range");
+      throw std::exception();
     }
     return elements[index];
   }

@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <iterator>
+#include <limits>
 #include <numeric>
 
 char const* Span::EmptySpan::what() const throw() { return "Span is empty"; }
@@ -42,15 +43,14 @@ std::size_t Span::shortestSpan() const throw(EmptySpan) {
     throw EmptySpan();
   }
 
-  std::vector<int> tmp_vec(vec.size(), 0);
-  std::adjacent_difference(vec.begin(), vec.end(), tmp_vec.begin());
-
-  std::vector<int>::iterator iter;
-  for (iter = tmp_vec.begin(); iter != tmp_vec.end(); ++iter) {
-    *iter = std::abs(*iter);
+  unsigned int shortest = std::numeric_limits<unsigned int>::max();
+  for (std::vector<int>::const_iterator it = vec.begin(); it + 1 != vec.end(); ++it) {
+    unsigned int dif = std::abs(static_cast<long>(*it) - static_cast<long>(*(it + 1)));
+    if (dif < shortest) {
+      shortest = dif;
+    }
   }
-
-  return (*std::min_element(tmp_vec.begin() + 1, tmp_vec.end()));
+  return shortest;
 }
 
 std::size_t Span::longestSpan() const throw(EmptySpan) {
